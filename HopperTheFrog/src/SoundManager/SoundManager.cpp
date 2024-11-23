@@ -1,7 +1,7 @@
 #include <cstdio>  // for printf
 #include <fstream>
 #include <vector>
-#include "SoundManager.h"
+#include <SoundManager/SoundManager.hpp>
 
 SoundManager::SoundManager() {
 	device = alcOpenDevice(nullptr); // Open default device

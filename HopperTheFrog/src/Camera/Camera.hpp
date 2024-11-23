@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 #ifdef __APPLE__
@@ -6,7 +8,15 @@
 #include <GL/glut.h>   // Include GLUT for other platforms
 #endif
 
-void drawStreet() {
-	std::cout << "Drawing Street..." << std::endl;
-	// Add OpenGL code to render the street here
-}
+// Global variables
+
+extern int windowHeight;
+extern int windowWidth;
+
+class Camera {
+public:
+	Camera();
+	~Camera();
+
+	void setupCamera();
+};

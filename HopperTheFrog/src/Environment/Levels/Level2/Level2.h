@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 #ifdef __APPLE__
@@ -6,7 +8,7 @@
 #include <GL/glut.h>   // Include GLUT for other platforms
 #endif
 
-void drawRiver() {
-	std::cout << "Drawing River..." << std::endl;
-	// Add OpenGL code to render the river here
-}
+class Level2
+{
+};
+
