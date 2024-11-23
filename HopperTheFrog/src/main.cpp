@@ -89,6 +89,12 @@ void initOpenGL() {
 	glClearColor(0.5f, 0.8f, 1.0f, 1.0f); // Set background color to light blue (sky)
 	glEnable(GL_DEPTH_TEST);             // Enable depth testing for 3D rendering
 	glShadeModel(GL_SMOOTH);             // Use smooth shading
+	glEnable(GL_FOG);
+	GLfloat fogColor[] = {0.5f, 0.8f, 1.0f, 1.0f}; // Sky color for fog
+	glFogfv(GL_FOG_COLOR, fogColor);
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	glFogf(GL_FOG_START, 10.0f);
+	glFogf(GL_FOG_END, 50.0f);
 	std::cout << "OpenGL initialized successfully!" << std::endl;
 }
 
@@ -106,7 +112,7 @@ int main(int argc, char** argv) {
 	// Initialize OpenGL settings
 	initOpenGL();
 
-	gStateMachine.change("menu", {}); // Start the game with the menu state
+	gStateMachine.change("play", {}); // Start the game with the menu state
 
 	// Register display callback
 	glutDisplayFunc(Render);

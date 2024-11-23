@@ -17,8 +17,7 @@ void Camera::setupCamera() {
 	glMatrixMode(GL_MODELVIEW); // Set the matrix mode to modelview
 	glLoadIdentity();           // Load the identity matrix
 
-	// Set the camera position and orientation
-	gluLookAt(0.0f, 0.0f, 5.0f, // Eye position
-		0.0f, 0.0f, 0.0f, // Look-at position
-		0.0f, 1.0f, 0.0f); // Up direction
+	gluLookAt(0.0f, 5.0f, 15.0f, // Eye position (move up and back for a better view)
+          0.0f, 0.0f, 0.0f,  // Look-at position (center of the scene)
+          0.0f, 1.0f, 0.0f); // Up direction
 }
