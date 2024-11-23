@@ -1,6 +1,20 @@
 #include <iostream>
 #include <string>
 
+
+#ifdef __APPLE__
+#include <GLUT/glut.h> // Include GLUT for macOS
+#include "SoundManager/SoundManager.hpp"
+#include "GameStates/StateManager.hpp"
+#include "GameStates/MenuState/MenuState.hpp"
+#include "GameStates/PlayState/PlayState.hpp"
+#include "GameStates/GameWinState/GameWinState.hpp"
+#include "GameStates/GameLoseState/GameLoseState.hpp"
+
+#include <Camera/Camera.hpp>
+#include <Lighting/Lighting.hpp>
+#else
+#include <GL/glut.h>   // Include GLUT for other platforms
 #include <SoundManager/SoundManager.hpp>
 #include <GameStates/StateManager.hpp>
 #include <GameStates/MenuState/MenuState.hpp>
@@ -10,13 +24,6 @@
 
 #include <Camera/Camera.hpp>
 #include <Lighting/Lighting.hpp>
-
-#ifdef __APPLE__
-#include <GLUT/glut.h> // Include GLUT for macOS
-#include "SoundManager/SoundManager.h"
-#else
-#include <GL/glut.h>   // Include GLUT for other platforms
-#include <SoundManager/SoundManager.h>
 #endif
 
 
