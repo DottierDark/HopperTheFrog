@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string>
 
-#include <SoundManager/SoundManager.h>
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
+#include "SoundManager/SoundManager.h"
 #else
 #include <GL/glut.h>   // Include GLUT for other platforms
+#include <SoundManager/SoundManager.h>
 #endif
 
 
