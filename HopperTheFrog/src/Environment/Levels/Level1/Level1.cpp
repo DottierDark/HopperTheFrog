@@ -54,33 +54,6 @@ void Level1::drawStreet() {
     glEnd();
 
 
-    // Draw dashed lane dividers
-    for (float z = 9.5f; z > -50.0f; z -= 2.0f) {
-        // Left lane divider
-        glBegin(GL_QUADS);
-            glVertex3f(-4.0f, 0.01f, z);
-            glVertex3f(-3.8f, 0.01f, z);
-            glVertex3f(-3.8f, 0.01f, z - 1.0f);
-            glVertex3f(-4.0f, 0.01f, z - 1.0f);
-        glEnd();
-
-        // Center lane divider
-        glBegin(GL_QUADS);
-            glVertex3f(-0.2f, 0.01f, z);
-            glVertex3f(0.2f, 0.01f, z);
-            glVertex3f(0.2f, 0.01f, z - 1.0f);
-            glVertex3f(-0.2f, 0.01f, z - 1.0f);
-        glEnd();
-
-        // Right lane divider
-        glBegin(GL_QUADS);
-            glVertex3f(3.8f, 0.01f, z);
-            glVertex3f(4.0f, 0.01f, z);
-            glVertex3f(4.0f, 0.01f, z - 1.0f);
-            glVertex3f(3.8f, 0.01f, z - 1.0f);
-        glEnd();
-    }
-
     // Add cylindrical curbs
     GLUquadric* quad = gluNewQuadric(); // Create a new quadric object for cylinders
 

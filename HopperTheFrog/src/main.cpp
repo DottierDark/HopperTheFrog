@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(windowWidth, windowHeight);                             // Set window size to 800x600
 	glutInitWindowPosition(100, 100);                         // Position the window
 	glutCreateWindow("HopperTheFrog");                        // Create the window with a title
-	streetTexture = loadTexture("../../assets/textures/streettexture.jpeg");
+	streetTexture = loadTexture("assets/textures/streettexture.jpeg");
 
 	std::cout << "Game initialized!" << std::endl;
     
