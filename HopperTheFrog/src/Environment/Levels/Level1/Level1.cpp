@@ -1,4 +1,6 @@
 #include <Environment/Levels/Level1/Level1.h>
+#include <Utils/TextureUtils.h>
+extern GLuint streetTexture;
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
 #else
@@ -6,19 +8,37 @@
 #endif
 
 void Level1::drawStreet() {
-    std::cout << "Drawing a realistic street..." << std::endl;
+    std::cout << "Drawing a realistic street with texture..." << std::endl;
 
-    // Draw the main road (dark gray)
-    glColor3f(0.2f, 0.2f, 0.2f); 
+    // Enable texture mapping
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, streetTexture); // Bind the street texture
+    glGenerateMipmap(GL_TEXTURE_2D); // Generate mipmaps for the texture
+
+    // Draw the textured road
+    glColor3f(1.0f, 1.0f, 1.0f); // Ensure the texture's color is unmodified
     glBegin(GL_QUADS);
-        glVertex3f(-8.0f, 0.0f, -50.0f);
-        glVertex3f(8.0f, 0.0f, -50.0f);
-        glVertex3f(8.0f, 0.0f, 10.0f);
-        glVertex3f(-8.0f, 0.0f, 10.0f);
+
+    // Map the texture to the quad
+    // Left half of the road (two lanes)
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-8.0f, 0.0f, -50.0f);
+    glTexCoord2f(2.0f, 0.0f); glVertex3f(0.0f, 0.0f, -50.0f);
+    glTexCoord2f(2.0f, 1.0f); glVertex3f(0.0f, 0.0f, 10.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-8.0f, 0.0f, 10.0f);
+
+    // Right half of the road (two lanes)
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, -50.0f);
+    glTexCoord2f(2.0f, 0.0f); glVertex3f(8.0f, 0.0f, -50.0f);
+    glTexCoord2f(2.0f, 1.0f); glVertex3f(8.0f, 0.0f, 10.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, 0.0f, 10.0f);
+
     glEnd();
 
+    // Disable texture mapping
+    glDisable(GL_TEXTURE_2D);
+
     // Draw sidewalks on both sides (lighter gray)
-    glColor3f(0.5f, 0.5f, 0.5f); 
+    glColor3f(0.5f, 0.5f, 0.5f);
     glBegin(GL_QUADS);
         // Left sidewalk
         glVertex3f(-10.0f, 0.0f, -50.0f);
@@ -32,6 +52,7 @@ void Level1::drawStreet() {
         glVertex3f(10.0f, 0.0f, 10.0f);
         glVertex3f(8.0f, 0.0f, 10.0f);
     glEnd();
+
 
     // Draw dashed lane dividers
     for (float z = 9.5f; z > -50.0f; z -= 2.0f) {

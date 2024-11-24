@@ -10,7 +10,7 @@
 #include "GameStates/PlayState/PlayState.hpp"
 #include "GameStates/GameWinState/GameWinState.hpp"
 #include "GameStates/GameLoseState/GameLoseState.hpp"
-
+#include "Utils/TextureUtils.h"
 #include <Camera/Camera.hpp>
 #include <Lighting/Lighting.hpp>
 #else
@@ -21,7 +21,7 @@
 #include <GameStates/PlayState/PlayState.hpp>
 #include <GameStates/GameWinState/GameWinState.hpp>
 #include <GameStates/GameLoseState/GameLoseState.hpp>
-
+#include <Utils/TextureUtils.h>
 #include <Camera/Camera.hpp>
 #include <Lighting/Lighting.hpp>
 #endif
@@ -31,6 +31,7 @@
 int windowHeight = 600;
 int windowWidth = 800;
 
+GLuint streetTexture; // Define the variable
 
 Camera camera; // Camera object
 Lighting lighting; // Lighting object
@@ -106,9 +107,10 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(windowWidth, windowHeight);                             // Set window size to 800x600
 	glutInitWindowPosition(100, 100);                         // Position the window
 	glutCreateWindow("HopperTheFrog");                        // Create the window with a title
+	streetTexture = loadTexture("../../assets/textures/streettexture.jpeg");
 
 	std::cout << "Game initialized!" << std::endl;
-
+    
 	// Initialize OpenGL settings
 	initOpenGL();
 
