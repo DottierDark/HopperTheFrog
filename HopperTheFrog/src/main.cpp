@@ -1,22 +1,29 @@
 #include <iostream>
 #include <string>
 
+
+#ifdef __APPLE__
+#include <GLUT/glut.h> // Include GLUT for macOS
+#include "SoundManager/SoundManager.hpp"
+#include "GameStates/StateManager.hpp"
+#include "GameStates/MenuState/MenuState.hpp"
+#include "GameStates/PlayState/PlayState.hpp"
+#include "GameStates/GameWinState/GameWinState.hpp"
+#include "GameStates/GameLoseState/GameLoseState.hpp"
+#include "Utils/TextureUtils.h"
+#include <Camera/Camera.hpp>
+#include <Lighting/Lighting.hpp>
+#else
+#include <GL/glut.h>   // Include GLUT for other platforms
 #include <SoundManager/SoundManager.hpp>
 #include <GameStates/StateManager.hpp>
 #include <GameStates/MenuState/MenuState.hpp>
 #include <GameStates/PlayState/PlayState.hpp>
 #include <GameStates/GameWinState/GameWinState.hpp>
 #include <GameStates/GameLoseState/GameLoseState.hpp>
-
+#include <Utils/TextureUtils.h>
 #include <Camera/Camera.hpp>
 #include <Lighting/Lighting.hpp>
-
-#ifdef __APPLE__
-#include <GLUT/glut.h> // Include GLUT for macOS
-#include "SoundManager/SoundManager.h"
-#else
-#include <GL/glut.h>   // Include GLUT for other platforms
-#include <SoundManager/SoundManager.h>
 #endif
 
 
@@ -24,6 +31,7 @@
 int windowHeight = 600;
 int windowWidth = 800;
 
+GLuint streetTexture; // Define the variable
 
 Camera camera; // Camera object
 Lighting lighting; // Lighting object
@@ -82,6 +90,12 @@ void initOpenGL() {
 	glClearColor(0.5f, 0.8f, 1.0f, 1.0f); // Set background color to light blue (sky)
 	glEnable(GL_DEPTH_TEST);             // Enable depth testing for 3D rendering
 	glShadeModel(GL_SMOOTH);             // Use smooth shading
+	glEnable(GL_FOG);
+	GLfloat fogColor[] = {0.5f, 0.8f, 1.0f, 1.0f}; // Sky color for fog
+	glFogfv(GL_FOG_COLOR, fogColor);
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	glFogf(GL_FOG_START, 10.0f);
+	glFogf(GL_FOG_END, 50.0f);
 	std::cout << "OpenGL initialized successfully!" << std::endl;
 }
 
@@ -93,13 +107,14 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(windowWidth, windowHeight);                             // Set window size to 800x600
 	glutInitWindowPosition(100, 100);                         // Position the window
 	glutCreateWindow("HopperTheFrog");                        // Create the window with a title
+	streetTexture = loadTexture("assets/textures/streettexture.jpeg");
 
 	std::cout << "Game initialized!" << std::endl;
-
+    
 	// Initialize OpenGL settings
 	initOpenGL();
 
-	gStateMachine.change("menu", {}); // Start the game with the menu state
+	gStateMachine.change("play", {}); // Start the game with the menu state
 
 	// Register display callback
 	glutDisplayFunc(Render);
