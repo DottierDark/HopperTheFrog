@@ -14,13 +14,13 @@
 #include <Camera/Camera.hpp>
 #include <Lighting/Lighting.hpp>
 #else
+#include <Utils/SoundManager/SoundManager.hpp>
+#include <Game Engine/GameStates/StateManager.hpp>
+#include <Game Engine/GameStates/MenuState/MenuState.hpp>
+#include <Game Engine/GameStates/PlayState/PlayState.hpp>
+#include <Game Engine/GameStates/GameWinState/GameWinState.hpp>
+#include <Game Engine/GameStates/GameLoseState/GameLoseState.hpp>
 #include <GL/glut.h>   // Include GLUT for other platforms
-#include <SoundManager/SoundManager.hpp>
-#include <GameStates/StateManager.hpp>
-#include <GameStates/MenuState/MenuState.hpp>
-#include <GameStates/PlayState/PlayState.hpp>
-#include <GameStates/GameWinState/GameWinState.hpp>
-#include <GameStates/GameLoseState/GameLoseState.hpp>
 #endif
 
 
@@ -51,14 +51,14 @@ void Render() {
 void Update(int value) {
 
 	//get the delta time
-	float dt = 1.0 / 60.0;
+	float dt = glutGet(GLUT_ELAPSED_TIME) / 1000; // Get the elapsed time in seconds
 
 
 	// Update the state machine
 	gStateMachine.update(dt);
 
 	glutPostRedisplay();
-
+	// Call the update function every 1/60 seconds
 	glutTimerFunc(1000 / 60, Update, 0);
 }
 
@@ -79,7 +79,17 @@ void initOpenGL() {
 	glClearColor(0.5f, 0.8f, 1.0f, 1.0f); // Set background color to light blue (sky)
 	glEnable(GL_DEPTH_TEST);             // Enable depth testing for 3D rendering
 	glShadeModel(GL_SMOOTH);             // Use smooth shading
-	std::cout << "OpenGL initialized successfully!" << std::endl;
+}
+
+// Handle window resize
+void reshape(int width, int height) {
+	if (height == 0) height = 1; // Prevent division by zero
+	glViewport(0, 0, width, height);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45.0f, (float)width / (float)height, 0.1f, 100.0f);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 // Main function
@@ -111,7 +121,9 @@ int main(int argc, char** argv) {
 	// Register the mouse function
 	glutMouseFunc(MouseFunc);
 
-	// Register the idle function
+
+	// Register the reshape function
+	glutReshapeFunc(reshape);
 
 	// Enter the GLUT event loop
 	glutMainLoop();
