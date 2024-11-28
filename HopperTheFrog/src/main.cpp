@@ -21,9 +21,6 @@
 #include <GameStates/PlayState/PlayState.hpp>
 #include <GameStates/GameWinState/GameWinState.hpp>
 #include <GameStates/GameLoseState/GameLoseState.hpp>
-#include <Utils/TextureUtils.h>
-#include <Camera/Camera.hpp>
-#include <Lighting/Lighting.hpp>
 #endif
 
 
@@ -31,10 +28,6 @@
 int windowHeight = 600;
 int windowWidth = 800;
 
-GLuint streetTexture; // Define the variable
-
-Camera camera; // Camera object
-Lighting lighting; // Lighting object
 
 
 // State manager
@@ -48,10 +41,6 @@ StateManager gStateMachine({
 // Display callback for rendering the scene
 void Render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear screen and depth buffer
-
-	// Call the drawing functions to render the scene
-	lighting.setupLighting();  // Set up lighting
-	camera.setupCamera();    // Configure the camera
 
 	gStateMachine.render();
 
@@ -101,10 +90,9 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(windowWidth, windowHeight);                             // Set window size to 800x600
 	glutInitWindowPosition(100, 100);                         // Position the window
 	glutCreateWindow("HopperTheFrog");                        // Create the window with a title
-	streetTexture = loadTexture("assets/textures/streettexture.jpeg");
 
 	std::cout << "Game initialized!" << std::endl;
-    
+
 	// Initialize OpenGL settings
 	initOpenGL();
 
@@ -124,10 +112,6 @@ int main(int argc, char** argv) {
 	glutMouseFunc(MouseFunc);
 
 	// Register the idle function
-
-
-
-
 
 	// Enter the GLUT event loop
 	glutMainLoop();
