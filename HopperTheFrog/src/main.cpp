@@ -4,15 +4,12 @@
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
-#include "SoundManager/SoundManager.hpp"
-#include "GameStates/StateManager.hpp"
-#include "GameStates/MenuState/MenuState.hpp"
-#include "GameStates/PlayState/PlayState.hpp"
-#include "GameStates/GameWinState/GameWinState.hpp"
-#include "GameStates/GameLoseState/GameLoseState.hpp"
-#include "Utils/TextureUtils.h"
-#include <Camera/Camera.hpp>
-#include <Lighting/Lighting.hpp>
+#include "Utils/SoundManager/SoundManager.hpp"
+#include "Game Engine/GameStates/StateManager.hpp"
+#include "Game Engine/GameStates/MenuState/MenuState.hpp"
+#include "Game Engine/GameStates/PlayState/PlayState.hpp"
+#include "Game Engine/GameStates/GameWinState/GameWinState.hpp"
+#include "Game Engine/GameStates/GameLoseState/GameLoseState.hpp"
 #else
 #include <Utils/SoundManager/SoundManager.hpp>
 #include <Game Engine/GameStates/StateManager.hpp>

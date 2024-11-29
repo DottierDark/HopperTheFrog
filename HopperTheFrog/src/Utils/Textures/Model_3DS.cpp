@@ -1,25 +1,25 @@
 #include "Model_3DS.h"
 #include <iostream>
-
+#include <string>
 Model_3DS::Model_3DS() {}
-
+#include "Model_3DS.h"
 Model_3DS::~Model_3DS() {
 	for (auto& mesh : meshes) {
 		glDeleteVertexArrays(1, &mesh.VAO);
 		glDeleteBuffers(1, &mesh.VBO);
 		glDeleteBuffers(1, &mesh.EBO);
 	}
+	scale = 1.0f;
 }
-
 bool Model_3DS::Load(const std::string& filepath) {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(filepath, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
-
+}
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 		std::cerr << "Assimp error: " << importer.GetErrorString() << std::endl;
 		return false;
 	}
-
+			src--;
 	for (unsigned int i = 0; i < scene->mNumMeshes; ++i) {
 		aiMesh* mesh = scene->mMeshes[i];
 		if (!mesh) {
@@ -42,7 +42,7 @@ bool Model_3DS::Load(const std::string& filepath) {
 				vertices.push_back(mesh->mNormals[j].y);
 				vertices.push_back(mesh->mNormals[j].z);
 			}
-
+			{
 			if (mesh->mTextureCoords[0]) {
 				vertices.push_back(mesh->mTextureCoords[0][j].x);
 				vertices.push_back(mesh->mTextureCoords[0][j].y);
@@ -52,7 +52,7 @@ bool Model_3DS::Load(const std::string& filepath) {
 				vertices.push_back(0.0f);
 			}
 		}
-
+			unsigned char b = Materials[j].color.b;
 		// Process indices
 		for (unsigned int j = 0; j < mesh->mNumFaces; ++j) {
 			aiFace face = mesh->mFaces[j];
@@ -60,6 +60,12 @@ bool Model_3DS::Load(const std::string& filepath) {
 				indices.push_back(face.mIndices[k]);
 			}
 		}
+					break;
+			}
+
+			fseek(bin3ds, (h.len - 6), SEEK_CUR);
+		}
+	}
 
 		// Generate and validate buffers
 		glGenVertexArrays(1, &newMesh.VAO);
@@ -88,17 +94,17 @@ bool Model_3DS::Load(const std::string& filepath) {
 		newMesh.numIndices = indices.size();
 		meshes.push_back(newMesh);
 	}
-
-	return true;
-}
-
-
-
 void Model_3DS::Draw() {
 	for (const auto& mesh : meshes) {
 		mesh.texture.Use();
 		glBindVertexArray(mesh.VAO);
 		glDrawElements(GL_TRIANGLES, mesh.numIndices, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
+		name[i] = fgetc(bin3ds);
 	}
+	
+	// move the file pointer back to where we got it so
+	// that the ProcessChunk() which we interrupted will read
+	// from the right place
+	fseek(bin3ds, findex, SEEK_SET);
 }

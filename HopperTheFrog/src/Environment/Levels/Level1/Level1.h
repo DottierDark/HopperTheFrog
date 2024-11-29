@@ -9,6 +9,10 @@
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
+#include <Utils/Textures/Model_3DS.h>
+#include <Utils/Textures/GLTexture.h>
+#include <Game Engine/Camera/Camera.hpp>
+#include <Game Engine/Lighting/Lighting.hpp>
 #else
 
 #include <vector>
