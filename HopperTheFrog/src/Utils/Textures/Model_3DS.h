@@ -157,7 +157,7 @@ public:
 	float scale;			// The size you want the model scaled to
 	bool lit;				// True: the model is lit
 	bool visible;			// True: the model gets rendered
-	void Load(char *name);	// Loads a model
+	void Load(const char* name);  // Updated
 	void Draw();			// Draws the model
 	FILE *bin3ds;			// The binary 3ds file
 	Model_3DS();			// Constructor
@@ -200,4 +200,4 @@ private:
 	void CalculateNormals();
 };
 
-#endif MODEL_3DS_H
+#endif //MODEL_3DS_H

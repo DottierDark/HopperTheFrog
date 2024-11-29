@@ -37,17 +37,25 @@
 #ifndef GLTEXTURE_H
 #define GLTEXTURE_H
 
+#ifdef __APPLE__
+// Includes for macOS
+#include <OpenGL/gl.h>     // OpenGL headers for macOS
+#include <OpenGL/glu.h>    // GLU headers for macOS
+#include <GLUT/glut.h>     // GLUT headers for macOS
+#else
+// Includes for Windows
 #include <windows.h>		// Header File For Windows
+#include <gl\gl.h>			// Header File For The OpenGL32 Library
+#include <gl\glu.h>			// Header File For The GLu32 Library
+#include "GLAUX.H"		    // Header File For The Glaux Library
+
+
+#pragma comment(lib, "glaux")
+#endif
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-#include <gl\gl.h>			// Header File For The OpenGL32 Library
-#include <gl\glu.h>			// Header File For The GLu32 Library
-#include "GLAUX.H"		// Header File For The Glaux Library
-
-#pragma comment(lib, "glaux")
 
 class GLTexture
 {
@@ -58,15 +66,15 @@ public:
 	int height;										// Texture's height
 	void Use();										// Binds the texture for use
 	void BuildColorTexture(unsigned char r, unsigned char g, unsigned char b);	// Sometimes we want a texture of uniform color
-	void LoadTGAResource(char* name);				// Load a targa from the resources
-	void LoadBMPResource(char* name);				// Load a bitmap from the resources
-	void LoadFromResource(char* name);				// Load the texture from a resource
-	void LoadTGA(char* name);						// Loads a targa file
-	void LoadBMP(char* name);						// Loads a bitmap file
-	void Load(char* name);							// Load the texture
+    void LoadTGAResource(const char* name);
+	void LoadBMPResource(const char* name);
+	void LoadFromResource(const char* name);
+	void LoadTGA(const char* name);
+	void LoadBMP(const char* name);
+	void Load(const char* name);
 	GLTexture();									// Constructor
 	virtual ~GLTexture();							// Destructor
 
 };
 
-#endif GLTEXTURE_H
+#endif //GLTEXTURE_H
