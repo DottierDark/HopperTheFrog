@@ -12,6 +12,7 @@ public:
 	virtual void exit() = 0;
 	virtual void handleMouseClick(int button, int state, int x, int y) = 0;
 	virtual void handleKeyPress(unsigned char key, int x, int y) = 0;
+	virtual void handleKeyRelease(unsigned char key, int x, int y) = 0;
 
 };
 

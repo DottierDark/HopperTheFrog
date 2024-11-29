@@ -2,11 +2,19 @@
 
 #include <iostream>
 
+#include <Utils/Vector3f.h>
+
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
 #else
 #include <GL/glut.h>   // Include GLUT for other platforms
 #endif
+
+#ifndef M_PI
+
+#define M_PI 3.14159265358979323846
+#endif // !M_PI
+
 
 // Global variables
 
@@ -15,15 +23,27 @@ extern int windowWidth;
 
 class Camera {
 public:
+	enum ViewType { FIRST_PERSON, THIRD_PERSON };
+
 	Camera();
-	void setPosition(float x, float y, float z);
-	void setTarget(float x, float y, float z);
-	void setUpVector(float x, float y, float z);
+
+	Camera(float eyeX, float eyeY, float eyeZ,
+		float centerX, float centerY, float centerZ,
+		float upX, float upY, float upZ);
+
+	void toggleView(float playerX, float playerY, float playerZ, float playerRotY);
 	void applyView();
 
-private:
-	float posX, posY, posZ; // Camera position
-	float targetX, targetY, targetZ; // Target position
-	float upX, upY, upZ; // Up vector
-};
+	void moveX(float d);
+	void moveY(float d);
+	void moveZ(float d);
 
+private:
+	Vector3f eye;
+	Vector3f center;
+	Vector3f up;
+	ViewType currentView;
+
+	void setFOV(float fov);
+
+};

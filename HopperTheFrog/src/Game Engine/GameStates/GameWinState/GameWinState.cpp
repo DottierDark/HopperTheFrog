@@ -16,6 +16,9 @@ void GameWinState::handleMouseClick(int button, int state, int x, int y) {
 void GameWinState::handleKeyPress(unsigned char key, int x, int y) {
 }
 
+void GameWinState::handleKeyRelease(unsigned char key, int x, int y) {
+}
+
 void GameWinState::render() {
 }
 

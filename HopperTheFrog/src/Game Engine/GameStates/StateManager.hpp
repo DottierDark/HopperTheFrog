@@ -15,6 +15,7 @@ public:
 	void render();
 	void handleMouseClick(int button, int state, int x, int y);
 	void handleKeyPress(unsigned char key, int x, int y);
+	void handleKeyRelease(unsigned char key, int x, int y);
 
 
 private:

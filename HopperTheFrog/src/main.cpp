@@ -45,7 +45,7 @@ void Render() {
 	gStateMachine.render();
 
 
-	glFlush();        // Ensure all OpenGL commands are executed
+	glutSwapBuffers(); // Swap the front and back frame buffers (double buffering)
 }
 
 void Update(int value) {
@@ -68,29 +68,68 @@ void KeyBoardFunc(unsigned char key, int x, int y) {
 	gStateMachine.handleKeyPress(key, x, y);
 }
 
+void KeyBoardUpFunc(unsigned char key, int x, int y) {
+	// Call the playerAction function from the PlayState
+	gStateMachine.handleKeyRelease(key, x, y);
+}
+
 // Mouse callback for handling mouse clicks
 void MouseFunc(int button, int state, int x, int y) {
 	// Call the handleMouseClick function from the PlayState
 	gStateMachine.handleMouseClick(button, state, x, y);
 }
 
-// OpenGL initialization function
-void initOpenGL() {
+//=======================================================================
+// Material Configuration Function
+//======================================================================
+void InitMaterial()
+{
+	// Enable Material Tracking
+	glEnable(GL_COLOR_MATERIAL);
+
+	// Sich will be assigneet Material Properties whd by glColor
+	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+
+	// Set Material's Specular Color
+	// Will be applied to all objects
+	GLfloat specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+
+	// Set Material's Shine value (0->128)
+	GLfloat shininess[] = { 96.0f };
+	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
+}
+
+//=======================================================================
+// OpengGL Configuration Function
+//=======================================================================
+void myInit(void)
+{
+
 	glClearColor(0.5f, 0.8f, 1.0f, 1.0f); // Set background color to light blue (sky)
+
 	glEnable(GL_DEPTH_TEST);             // Enable depth testing for 3D rendering
 	glShadeModel(GL_SMOOTH);             // Use smooth shading
+
+	InitMaterial();
+
+	glEnable(GL_DEPTH_TEST);
+
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_COLOR_MATERIAL);
+
+
+	// Initialize GLEW
+	glewExperimental = GL_TRUE;
+	GLenum err = glewInit();
+	if (err != GLEW_OK) {
+		std::cerr << "GLEW initialization failed: " << glewGetErrorString(err) << std::endl;
+		exit(EXIT_FAILURE);
+	}
+
 }
 
-// Handle window resize
-void reshape(int width, int height) {
-	if (height == 0) height = 1; // Prevent division by zero
-	glViewport(0, 0, width, height);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45.0f, (float)width / (float)height, 0.1f, 100.0f);
-	glMatrixMode(GL_MODELVIEW);
-}
 
 // Main function
 int main(int argc, char** argv) {
@@ -101,10 +140,9 @@ int main(int argc, char** argv) {
 	glutInitWindowPosition(100, 100);                         // Position the window
 	glutCreateWindow("HopperTheFrog");                        // Create the window with a title
 
-	std::cout << "Game initialized!" << std::endl;
 
 	// Initialize OpenGL settings
-	initOpenGL();
+	myInit();
 
 	gStateMachine.change("play", {}); // Start the game with the menu state
 
@@ -118,12 +156,13 @@ int main(int argc, char** argv) {
 	// Register the keyboard function
 	glutKeyboardFunc(KeyBoardFunc);
 
+	// Register the keyboard up function
+	glutKeyboardUpFunc(KeyBoardUpFunc);
+
 	// Register the mouse function
 	glutMouseFunc(MouseFunc);
 
 
-	// Register the reshape function
-	glutReshapeFunc(reshape);
 
 	// Enter the GLUT event loop
 	glutMainLoop();

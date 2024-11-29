@@ -6,9 +6,6 @@ Level2::Level2() {
 	// Draw the lighting
 	lighting.setupLighting();
 
-	// Camera setup
-	camera.setPosition(0.0f, 5.0f, 20.0f);
-	camera.setTarget(0.0f, 0.0f, 0.0f);
 }
 
 void Level2::update(float deltaTime) {

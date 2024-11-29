@@ -15,6 +15,9 @@ void GameLoseState::handleMouseClick(int button, int state, int x, int y) {
 void GameLoseState::handleKeyPress(unsigned char key, int x, int y) {
 }
 
+void GameLoseState::handleKeyRelease(unsigned char key, int x, int y) {
+}
+
 void GameLoseState::render() {
 }
 

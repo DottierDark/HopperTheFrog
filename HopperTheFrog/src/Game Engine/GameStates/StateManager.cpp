@@ -24,6 +24,12 @@ void StateManager::handleKeyPress(unsigned char key, int x, int y) {
 	}
 }
 
+void StateManager::handleKeyRelease(unsigned char key, int x, int y) {
+	if (current) {
+		current->handleKeyRelease(key, x, y);
+	}
+}
+
 void StateManager::change(const std::string& stateName, const std::vector<std::string>& enterParams) {
 	auto it = states.find(stateName);
 	if (it != states.end()) {

@@ -16,6 +16,9 @@ void MenuState::handleMouseClick(int button, int state, int x, int y) {
 void MenuState::handleKeyPress(unsigned char key, int x, int y) {
 }
 
+void MenuState::handleKeyRelease(unsigned char key, int x, int y) {
+}
+
 void MenuState::render() {
 }
 
