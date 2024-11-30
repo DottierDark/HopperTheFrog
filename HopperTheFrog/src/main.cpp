@@ -1,23 +1,19 @@
 #include <iostream>
 #include <string>
 
+#include "Game Engine/GameStates/PlayState/PlayState.hpp"
 
-#ifdef __APPLE__
-#include <GLUT/glut.h> // Include GLUT for macOS
 #include "Utils/SoundManager/SoundManager.hpp"
 #include "Game Engine/GameStates/StateManager.hpp"
 #include "Game Engine/GameStates/MenuState/MenuState.hpp"
-#include "Game Engine/GameStates/PlayState/PlayState.hpp"
+
 #include "Game Engine/GameStates/GameWinState/GameWinState.hpp"
 #include "Game Engine/GameStates/GameLoseState/GameLoseState.hpp"
-#include "Utils/TexturesAndModels/Texture.h"
+
+#ifdef __APPLE__
+#include <GLUT/glut.h> // Include GLUT for macOS
 #else
-#include <Utils/SoundManager/SoundManager.hpp>
-#include <Game Engine/GameStates/StateManager.hpp>
-#include <Game Engine/GameStates/MenuState/MenuState.hpp>
-#include <Game Engine/GameStates/PlayState/PlayState.hpp>
-#include <Game Engine/GameStates/GameWinState/GameWinState.hpp>
-#include <Game Engine/GameStates/GameLoseState/GameLoseState.hpp>
+
 #include <GL/glut.h>   // Include GLUT for other platforms
 #endif
 
@@ -26,6 +22,9 @@
 int windowHeight = 600;
 int windowWidth = 800;
 
+
+//time between frames
+float lastTime = 0.0f;
 
 
 // State manager
@@ -49,11 +48,13 @@ void Render() {
 
 void Update(int value) {
 
-	//get the delta time
-	float dt = glutGet(GLUT_ELAPSED_TIME) / 1000; // Get the elapsed time in seconds
+	// Calculate time passed between frames (deltaTime)
+	float currentTime = glutGet(GLUT_ELAPSED_TIME) / 1000.0f; // Time in seconds
+	float deltaTime = currentTime - lastTime;
+	lastTime = currentTime;
 
 	// Update the state machine
-	gStateMachine.update(dt);
+	gStateMachine.update(deltaTime);
 
 	glutPostRedisplay();
 	// Call the update function every 1/60 seconds
@@ -102,16 +103,16 @@ void InitMaterial()
 // OpengGL Configuration Function
 //=======================================================================
 void myInit(void) {
-    glClearColor(0.5f, 0.8f, 1.0f, 1.0f);
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_TEXTURE_2D);
-    glShadeModel(GL_SMOOTH);
+	glClearColor(0.5f, 0.8f, 1.0f, 1.0f);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_TEXTURE_2D);
+	glShadeModel(GL_SMOOTH);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(45.0, 800.0 / 600.0, 1.0, 100.0);
-    glViewport(0, 0, 800, 600); // Ensure viewport matches window size
-    glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45.0, 800.0 / 600.0, 1.0, 100.0);
+	glViewport(0, 0, 800, 600); // Ensure viewport matches window size
+	glMatrixMode(GL_MODELVIEW);
 }
 
 

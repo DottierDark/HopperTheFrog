@@ -1,61 +1,73 @@
 #include "Frog.hpp"
-#include <cmath>
+
 
 
 Frog::Frog() {
-	speed = 1.0f;
-	rotationY = 0.0f;
-	moveForwardFlag = false;
-	moveBackwardFlag = false;
-	turnLeftFlag = false;
-	turnRightFlag = false;
+	speed = 200.0f;
+
 	model.loadModel("assets/models/frog.3ds");
 	pos.x = 0.0f;
-	pos.y = 500.0f;
+	pos.y = 100.0f;
 	pos.z = 0.0f;
+
+	moving = false;
+	direction = Vector3f(0.0f, 0.0f, 1.0f);
 
 }
 
-Frog::Frog(const char* modelPath) : speed(1.0f), rotationY(0.0f),
-moveForwardFlag(false), moveBackwardFlag(false),
-turnLeftFlag(false), turnRightFlag(false) {
+Frog::Frog(const char* modelPath) {
+
+	speed = 200.0f;
+
 	model.loadModel((char*)modelPath);
 	pos.x = 0.0f;
-	pos.y = 500.0f;
+	pos.y = 100.0f;
 	pos.z = 0.0f;
 
+	direction = Vector3f(0.0f, 0.0f, 1.0f);
+
+	moving = false;
+
+}
+
+// Toggle movement state
+void Frog::setMoving(bool isMoving) {
+	moving = isMoving;
+}
+
+
+// Move player forward
+void Frog::moveForward() {
+	direction = Vector3f(0.0f, 0.0f, -1.0f);
+	setMoving(true);
+}
+
+// Move player backward
+void Frog::moveBackward() {
+	direction = Vector3f(0.0f, 0.0f, 1.0f);
+	setMoving(true);
+}
+
+// Move player left
+void Frog::moveLeft() {
+	direction = Vector3f(-1.0f, 0.0f, 0.0f);
+	setMoving(true);
+}
+
+// Move player right
+void Frog::moveRight() {
+	direction = Vector3f(1.0f, 0.0f, 0.0f);
+	setMoving(true);
 }
 
 
 void Frog::update(float deltaTime) {
-	float dx = 0.0f, dz = 0.0f;
+	if (moving) {
+		// Move player in the direction they are facing
+		pos = pos + direction * speed * deltaTime;
 
-	// Determine movement direction based on flags
-	if (moveForwardFlag) {
-		dx += sin(rotationY * M_PI / 180.0f) * speed * deltaTime;
-		dz += cos(rotationY * M_PI / 180.0f) * speed * deltaTime;
-	}
-	if (moveBackwardFlag) {
-		dx -= sin(rotationY * M_PI / 180.0f) * speed * deltaTime;
-		dz -= cos(rotationY * M_PI / 180.0f) * speed * deltaTime;
-	}
-	if (turnLeftFlag) {
-		dx += cos(rotationY * M_PI / 180.0f) * speed * deltaTime;
-		dz -= sin(rotationY * M_PI / 180.0f) * speed * deltaTime;
-	}
-	if (turnRightFlag) {
-		dx -= cos(rotationY * M_PI / 180.0f) * speed * deltaTime;
-		dz += sin(rotationY * M_PI / 180.0f) * speed * deltaTime;
 	}
 
-	// Update position
-	pos.x += dx;
-	pos.z += dz;
-
-	// Automatically adjust rotation to face direction of motion
-	if (dx != 0.0f || dz != 0.0f) {
-		rotationY = atan2(dx, dz) * 180.0f / M_PI;
-	}
 }
 
 
@@ -63,8 +75,20 @@ void Frog::render() {
 	glPushMatrix();
 	// Apply transformations
 	glTranslatef(pos.x, pos.y, pos.z);       // Translate to current position
-	glRotatef(rotationY, 0.0f, 1.0f, 0.0f); // Rotate around Y-axis
-	glScalef(1.0f, 1.0f, 1.0f);          // Scale if necessary
+	// Calculate the rotation angle to face the direction of movement
+	if (direction.x == 1.0f) {
+		glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+	}
+	else if (direction.x == -1.0f) {
+		glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+	}
+	else if (direction.z == -1.0f) {
+		glRotatef(180.0f, 0.0f, 1.0f, 0.0f);
+	}
+	else {
+		glRotatef(0.0f, 0.0f, 1.0f, 0.0f);
+	}
+	glScalef(0.5f, 0.5f, 0.5f);          // Scale if necessary
 	model.render();                         // Render the model
 	glPopMatrix();
 }
@@ -72,6 +96,5 @@ void Frog::render() {
 float Frog::getX() const { return pos.x; }
 float Frog::getY() const { return pos.y; }
 float Frog::getZ() const { return pos.z; }
-float Frog::getRotationY() const { return rotationY; }
 float Frog::getSpeed() const { return speed; }
 

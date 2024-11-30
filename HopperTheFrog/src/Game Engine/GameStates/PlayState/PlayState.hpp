@@ -1,15 +1,20 @@
 #pragma once
 
-#include <Game Engine/GameStates/State.hpp>
+//includes glew needs to be included before gl.h
+#include <Environment/Ground/Ground.h>
+
+#include <Objects/Player/Frog.hpp>
 #include <Environment/Levels/Level1/Level1.h>
 #include <Environment/Levels/Level2/Level2.h>
-
+#include <Game Engine/GameStates/State.hpp>
 #include <Game Engine/Camera/Camera.hpp>
 #include <Game Engine/Lighting/Lighting.hpp>
 
-#include <Objects/Player/Frog.hpp>
-
-#include <Environment/Ground/Ground.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h> // Include GLUT for macOS
+#else
+#include <GL/glut.h>   // Include GLUT for other platforms
+#endif
 
 #ifndef M_PI
 

@@ -1,12 +1,4 @@
-#include <iostream>
 #include "Coin.hpp"
-
-#ifdef __APPLE__
-#include <GLUT/glut.h> // Include GLUT for macOS
-#else
-#include <GL/glut.h>   // Include GLUT for other platforms
-#endif
-
 
 Coin::Coin() {
 	model.loadModel("assets/models/Coin.3ds");

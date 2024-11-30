@@ -60,29 +60,27 @@ void PlayState::handleMouseClick(int button, int state, int x, int y) {
 void PlayState::handleKeyPress(unsigned char key, int x, int y) {
 	switch (key) {
 	case 'w': {
-		frog.moveForwardFlag = true;
-
+		frog.moveForward();
 		//// Move camera forward with the player
 		//camera.moveZ(-frog.getSpeed() * deltaTime);
 		break;
 	}
 	case 's': {
-		frog.moveBackwardFlag = true;
+		frog.moveBackward();
 
 		//// Move camera backward with the player
 		//camera.moveZ(frog.getSpeed() * deltaTime);
 		break;
 	}
 	case 'a': {
-		frog.turnLeftFlag = true;
+		frog.moveLeft();
 
 		//// Move camera left with the player
 		//camera.moveX(-frog.getSpeed() * deltaTime);
 		break;
 	}
 	case 'd': {
-		frog.turnRightFlag = true;
-
+		frog.moveRight();
 		//// Move camera right with the player
 		//camera.moveX(frog.getSpeed() * deltaTime);
 		break;
@@ -98,11 +96,12 @@ void PlayState::handleKeyPress(unsigned char key, int x, int y) {
 
 void PlayState::handleKeyRelease(unsigned char key, int x, int y) {
 	switch (key) {
-	case 'w': frog.moveForwardFlag = false; break;
-	case 's': frog.moveBackwardFlag = false; break;
-	case 'a': frog.turnLeftFlag = false; break;
-	case 'd': frog.turnRightFlag = false; break;
-
+	case 'w':
+	case 's':
+	case 'a':
+	case 'd':
+		frog.setMoving(false); // Stop movement when key is released
+		break;
 	}
 }
 

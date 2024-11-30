@@ -4,6 +4,12 @@
 #include <Utils/TexturesAndModels/Model.h>
 #include <Utils/Vector3f.h>
 
+#ifdef __APPLE__
+#include <GLUT/glut.h> // Include GLUT for macOS
+#else
+#include <GL/glut.h>   // Include GLUT for other platforms
+#endif
+
 
 class Portal
 {

@@ -27,7 +27,8 @@ void Car::render() {
 	glPushMatrix();
 	// Apply transformations
 	glTranslatef(pos.x, pos.y, pos.z);       // Translate to current position
-	glScalef(1.0f, 1.0f, 1.0f);          // Scale if necessary
+	glRotatef(-90, 1, 0, 0);               // Rotate to face the direction of movement
+	glScalef(0.4f, 0.4f, 0.4f);          // Scale if necessary
 	model.render();                     // Render the model
 	glPopMatrix();
 }

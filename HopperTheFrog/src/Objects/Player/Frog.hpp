@@ -1,8 +1,16 @@
 #pragma once
 
 #include <iostream>
+#include <cmath>
 #include <Utils/TexturesAndModels/Model.h>
 #include <Utils/Vector3f.h>
+
+
+#ifdef __APPLE__
+#include <GLUT/glut.h> // Include GLUT for macOS
+#else
+#include <GL/glut.h>   // Include GLUT for other platforms
+#endif
 
 #ifndef M_PI
 
@@ -24,20 +32,25 @@ public:
 	float getX() const;
 	float getY() const;
 	float getZ() const;
-	float getRotationY() const;
-	float getSpeed() const;
 
-	// Movement control state
-	bool moveForwardFlag;
-	bool moveBackwardFlag;
-	bool turnLeftFlag;
-	bool turnRightFlag;
+	// Movement control functions
+	void moveForward();
+	void moveBackward();
+	void moveLeft();
+	void moveRight();
+
+	// Toggle movement state
+	void setMoving(bool isMoving);
+
+	float getSpeed() const;
 
 private:
 	Model model;
 	Vector3f pos;
+	Vector3f direction;
+	bool moving;
 	float speed;
-	float rotationY; // Y-axis rotation
+
 
 
 };

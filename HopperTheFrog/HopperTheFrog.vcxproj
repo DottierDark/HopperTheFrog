@@ -156,8 +156,8 @@
     <ClCompile Include="src\Objects\Player\Frog.cpp" />
     <ClCompile Include="src\Utils\SoundManager\SoundManager.cpp" />
     <ClCompile Include="src\HUD\UI.cpp" />
-    <ClCompile Include="src\Utils\Textures\GLTexture.cpp" />
-    <ClCompile Include="src\Utils\Textures\Model_3DS.cpp" />
+    <ClCompile Include="src\Utils\TexturesAndModels\GLTexture.cpp" />
+    <ClCompile Include="src\Utils\TexturesAndModels\Model.cpp" />
     <ClCompile Include="src\Utils\Utils.cpp" />
     <ClCompile Include="src\Game Engine\GameStates\StateManager.cpp" />
     <ClCompile Include="src\Utils\Vector3f.cpp" />
@@ -182,9 +182,9 @@
     <ClInclude Include="src\Game Engine\Lighting\Lighting.hpp" />
     <ClInclude Include="src\Utils\SoundManager\SoundManager.hpp" />
     <ClInclude Include="src\Game Engine\GameStates\StateManager.hpp" />
-    <ClInclude Include="src\Utils\Textures\GLTexture.h" />
-    <ClInclude Include="src\Utils\Textures\Model_3DS.h" />
-    <ClInclude Include="src\Utils\Textures\TextureBuilder.h" />
+    <ClInclude Include="src\Utils\TexturesAndModels\GLTexture.h" />
+    <ClInclude Include="src\Utils\TexturesAndModels\Model.h" />
+    <ClInclude Include="src\Utils\TexturesAndModels\stb_image.h" />
     <ClInclude Include="src\Utils\Vector3f.h" />
   </ItemGroup>
   <ItemGroup>

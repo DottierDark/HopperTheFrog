@@ -10,7 +10,7 @@ Ground::Ground(const char* textureFile) {
 }
 
 void Ground::render() {
-	//texture.Use(); // Bind the texture
+	texture.Use(); // Bind the texture
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(-500.0f, 0.0f, -500.0f);
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(500.0f, 0.0f, -500.0f);
