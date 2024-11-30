@@ -9,16 +9,16 @@
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
-#include <Utils/Textures/Model_3DS.h>
-#include <Utils/Textures/GLTexture.h>
+#include <Utils/TexturesAndModels/Model.h>
+#include <Utils/TexturesAndModels/GLTexture.h>
 #include <Game Engine/Camera/Camera.hpp>
 #include <Game Engine/Lighting/Lighting.hpp>
 #else
 
 #include <vector>
 
-#include <Utils/Textures/Model_3DS.h>
-#include  <Utils/Textures/GLTexture.h>
+#include <Utils/TexturesAndModels/Model.h>
+#include  <Utils/TexturesAndModels/GLTexture.h>
 
 
 
@@ -40,7 +40,7 @@ private:
 	// Add Level1 attributes
 
 
-	Model_3DS street;
+	Model street;
 
 
 	std::vector<Car> cars;

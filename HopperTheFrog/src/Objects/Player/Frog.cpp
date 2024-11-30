@@ -9,7 +9,7 @@ Frog::Frog() {
 	moveBackwardFlag = false;
 	turnLeftFlag = false;
 	turnRightFlag = false;
-	model.Load("assets/models/frog/frog.3ds");
+	model.loadModel("assets/models/frog.3ds");
 	pos.x = 0.0f;
 	pos.y = 500.0f;
 	pos.z = 0.0f;
@@ -19,7 +19,7 @@ Frog::Frog() {
 Frog::Frog(const char* modelPath) : speed(1.0f), rotationY(0.0f),
 moveForwardFlag(false), moveBackwardFlag(false),
 turnLeftFlag(false), turnRightFlag(false) {
-	model.Load((char*)modelPath);
+	model.loadModel((char*)modelPath);
 	pos.x = 0.0f;
 	pos.y = 500.0f;
 	pos.z = 0.0f;
@@ -65,7 +65,7 @@ void Frog::render() {
 	glTranslatef(pos.x, pos.y, pos.z);       // Translate to current position
 	glRotatef(rotationY, 0.0f, 1.0f, 0.0f); // Rotate around Y-axis
 	glScalef(1.0f, 1.0f, 1.0f);          // Scale if necessary
-	model.Draw();                         // Render the model
+	model.render();                         // Render the model
 	glPopMatrix();
 }
 

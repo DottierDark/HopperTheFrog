@@ -10,6 +10,7 @@
 #include "Game Engine/GameStates/PlayState/PlayState.hpp"
 #include "Game Engine/GameStates/GameWinState/GameWinState.hpp"
 #include "Game Engine/GameStates/GameLoseState/GameLoseState.hpp"
+#include "Utils/TexturesAndModels/Texture.h"
 #else
 #include <Utils/SoundManager/SoundManager.hpp>
 #include <Game Engine/GameStates/StateManager.hpp>
@@ -41,15 +42,15 @@ void Render() {
 
 	gStateMachine.render();
 
-
 	glutSwapBuffers(); // Swap the front and back frame buffers (double buffering)
+
+
 }
 
 void Update(int value) {
 
 	//get the delta time
 	float dt = glutGet(GLUT_ELAPSED_TIME) / 1000; // Get the elapsed time in seconds
-
 
 	// Update the state machine
 	gStateMachine.update(dt);
@@ -100,30 +101,17 @@ void InitMaterial()
 //=======================================================================
 // OpengGL Configuration Function
 //=======================================================================
-void myInit(void)
-{
+void myInit(void) {
+    glClearColor(0.5f, 0.8f, 1.0f, 1.0f);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_2D);
+    glShadeModel(GL_SMOOTH);
 
-	glClearColor(0.5f, 0.8f, 1.0f, 1.0f); // Set background color to light blue (sky)
-
-	glEnable(GL_DEPTH_TEST);             // Enable depth testing for 3D rendering
-	glShadeModel(GL_SMOOTH);             // Use smooth shading
-
-	InitMaterial();
-
-	glEnable(GL_DEPTH_TEST);
-
-	glEnable(GL_NORMALIZE);
-	glEnable(GL_COLOR_MATERIAL);
-
-
-	// Initialize GLEW
-	glewExperimental = GL_TRUE;
-	GLenum err = glewInit();
-	if (err != GLEW_OK) {
-		std::cerr << "GLEW initialization failed: " << glewGetErrorString(err) << std::endl;
-		exit(EXIT_FAILURE);
-	}
-
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0, 800.0 / 600.0, 1.0, 100.0);
+    glViewport(0, 0, 800, 600); // Ensure viewport matches window size
+    glMatrixMode(GL_MODELVIEW);
 }
 
 
@@ -140,6 +128,8 @@ int main(int argc, char** argv) {
 
 	// Initialize OpenGL settings
 	myInit();
+
+
 
 	gStateMachine.change("play", {}); // Start the game with the menu state
 

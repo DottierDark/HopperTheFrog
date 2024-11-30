@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <Utils/Textures/Model_3DS.h>
+#include <Utils/TexturesAndModels/Model.h>
 #include <Utils/Vector3f.h>
 
 
@@ -12,7 +12,7 @@ public:
 	void render();
 
 private:
-	Model_3DS model;
+	Model model;
 	Vector3f pos;
 };
 

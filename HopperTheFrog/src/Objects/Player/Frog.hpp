@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <Utils/Textures/Model_3DS.h>
+#include <Utils/TexturesAndModels/Model.h>
 #include <Utils/Vector3f.h>
 
 #ifndef M_PI
@@ -34,7 +34,7 @@ public:
 	bool turnRightFlag;
 
 private:
-	Model_3DS model;
+	Model model;
 	Vector3f pos;
 	float speed;
 	float rotationY; // Y-axis rotation

@@ -3,7 +3,7 @@
 Level1::Level1() {
 
 	// Load the street model
-	street.Load("assets/models/street/street.3ds");
+	street.loadModel("assets/models/street.3ds");
 
 	// Load the ground texture
 
@@ -32,7 +32,7 @@ void Level1::render() {
 
 
 	// Draw the street
-	street.Draw();
+	street.render();
 
 	// Draw the cars
 	for (int i = 0; i < cars.size(); i++) {
