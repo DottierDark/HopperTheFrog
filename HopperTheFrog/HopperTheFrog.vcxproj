@@ -162,6 +162,7 @@
     <ClCompile Include="src\Utils\Utils.cpp" />
     <ClCompile Include="src\Game Engine\GameStates\StateManager.cpp" />
     <ClCompile Include="src\Utils\Vector3f.cpp" />
+    <ClCompile Include="src\Environment\Street\Street.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Environment\Ground\Ground.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="src\Utils\TexturesAndModels\Model.h" />
     <ClInclude Include="src\Utils\TexturesAndModels\stb_image.h" />
     <ClInclude Include="src\Utils\Vector3f.h" />
+    <ClInclude Include="src\Environment\Street\Street.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="models\bicycle.3ds" />

@@ -90,6 +90,9 @@
     <ClCompile Include="src\Utils\3DModel\Model_3DS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Environment\Street\Street.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game Engine\Camera\Camera.hpp">
@@ -162,6 +165,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Utils\3DModel\Model_3DS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Environment\Street\Street.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

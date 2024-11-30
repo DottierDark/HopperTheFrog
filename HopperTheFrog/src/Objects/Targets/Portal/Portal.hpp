@@ -17,6 +17,7 @@ class Portal
 {
 public:
 	Portal();
+	Portal(float x, float y, float z);
 	void render();
 
 private:

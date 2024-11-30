@@ -5,7 +5,7 @@
 #include <vector>
 
 
-#include <Utils/TexturesAndModels/Model.h>
+#include <Environment/Street/Street.hpp>
 #include <Objects/Targets/Portal/Portal.hpp>
 
 //includes glut.h for macOS and other platforms
@@ -36,9 +36,9 @@ private:
 	// Add Level1 attributes
 
 
-	Model street;
 
 
+	std::vector<Street> streets;
 	std::vector<Car> cars;
 	std::vector<Coin> coins;
 	Portal portal;

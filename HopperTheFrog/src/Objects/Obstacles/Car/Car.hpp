@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include <Utils/TexturesAndModels/Model.h>
+#include <Utils/3DModel/Model_3DS.h>
 #include <Utils/Vector3f.h>
 
 #ifdef __APPLE__
@@ -19,7 +19,7 @@ public:
 	void render();
 
 private:
-	Model model;
+	Model_3DS model;
 	Vector3f pos;
 	float speed = 0.5f;
 };

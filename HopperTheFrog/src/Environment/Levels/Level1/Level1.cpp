@@ -2,17 +2,19 @@
 
 Level1::Level1() {
 
-	// Load the street model
-	street.loadModel("assets/models/street.3ds");
 
-	// Load the ground texture
+
+	// Load the streets
+	streets.push_back(Street(-25.0f, 0.0f, 0.0f));
+	streets.push_back(Street(25.0f, 0.0f, 0.0f));
 
 
 	// Load the portal
-	portal = Portal();
+	portal = Portal(50, 0, 0);
 
 
 	// Load the cars
+	cars.push_back(Car(0.0f, 0.0f, 0.0f, 1.0f));
 	cars.push_back(Car(0.0f, 0.0f, 0.0f, 1.0f));
 
 	// Load the coins
@@ -29,10 +31,10 @@ void Level1::update(float deltaTime) {
 
 void Level1::render() {
 
-
-
-	// Draw the street
-	street.render();
+	// Draw the streets
+	for (int i = 0; i < streets.size(); i++) {
+		streets[i].render();
+	}
 
 	// Draw the cars
 	for (int i = 0; i < cars.size(); i++) {

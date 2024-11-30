@@ -2,7 +2,7 @@
 
 
 Camera::Camera() {
-	eye = Vector3f(-400.0f, 10.0f, 0.0f);   // Camera positioned directly above
+	eye = Vector3f(-100.0f, 10.0f, 0.0f);   // Camera positioned directly above
 	center = Vector3f(0.0f, 1.0f, 0.0f); // Looking at the origin
 	up = Vector3f(0.0f, 1.0f, 0.0f);    // Up direction aligned with -Z
 	currentView = THIRD_PERSON;

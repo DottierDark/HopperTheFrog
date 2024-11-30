@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cmath>
 #include <Utils/TexturesAndModels/Model.h>
+
+#include <Utils/3DModel/Model_3DS.h>
 #include <Utils/Vector3f.h>
 
 
@@ -45,7 +47,7 @@ public:
 	float getSpeed() const;
 
 private:
-	Model model;
+	Model_3DS model;
 	Vector3f pos;
 	Vector3f direction;
 	bool moving;
