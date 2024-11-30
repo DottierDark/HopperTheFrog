@@ -2,19 +2,16 @@
 
 
 Portal::Portal() {
-	model.loadModel("assets/models/Portal_1.3ds");
-	pos.x = 300;
-	pos.y = 0;
-	pos.z = 0;
+	model.Load("assets/models/Portal_1.3ds");
+	model.pos.x = -300;
+	model.pos.y = 0;
+	model.pos.z = 0;
+
+	model.scale = 10.0f;
 
 }
 
 
 void Portal::render() {
-	glPushMatrix();
-	// Apply transformations
-	glTranslatef(pos.x, pos.y, pos.z);       // Translate to current position
-	glScalef(10.0f, 10.0f, 100.0f);          // Scale if necessary
-	model.render();                         // Render the model
-	glPopMatrix();
+	model.Draw();
 }

@@ -69,12 +69,6 @@
     <ClCompile Include="src\Utils\Vector3f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\Textures\GLTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utils\Textures\Model_3DS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Objects\Obstacles\River\River.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,6 +85,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils\TexturesAndModels\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\3DModel\Model_3DS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,12 +128,6 @@
     <ClInclude Include="src\Utils\Vector3f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Textures\GLTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\Textures\Model_3DS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Objects\Obstacles\River\River.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -155,9 +146,6 @@
     <ClInclude Include="src\Objects\Targets\House\House.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Textures\TextureBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Objects\Player\Frog.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -173,7 +161,7 @@
     <ClInclude Include="src\Utils\TexturesAndModels\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\TexturesAndModels\TextureBuilder.h">
+    <ClInclude Include="src\Utils\3DModel\Model_3DS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

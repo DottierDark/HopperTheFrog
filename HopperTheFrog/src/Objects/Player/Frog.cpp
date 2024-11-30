@@ -5,7 +5,7 @@
 Frog::Frog() {
 	speed = 200.0f;
 
-	model.loadModel("assets/models/frog.3ds");
+	model.loadModel("assets/models/frog/frog.3ds");
 	pos.x = 0.0f;
 	pos.y = 100.0f;
 	pos.z = 0.0f;

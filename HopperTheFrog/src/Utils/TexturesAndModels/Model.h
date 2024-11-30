@@ -15,35 +15,36 @@
 #include <assimp/scene.h>         // Assimp scene structure
 #include <assimp/postprocess.h>   // Assimp post-processing flags
 
+#include "GLTexture.h"
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Model {
 public:
-    // Constructor and Destructor
-    Model();
-    ~Model();
+	// Constructor and Destructor
+	Model();
+	~Model();
 
-    // Load a 3D model from file
-    bool loadModel(const std::string& filePath);
+	// Load a 3D model from file
+	bool loadModel(const std::string& filePath);
 
-
-    // Render the loaded model
-    void render();
-
-
+	// Render the loaded model
+	void render();
 
 private:
-    // Helper methods for processing Assimp data
-    void processNode(aiNode* node, const aiScene* scene);
-    void processMesh(aiMesh* mesh, const aiScene* scene);
+	// Helper methods for processing Assimp data
+	void processNode(aiNode* node, const aiScene* scene);
+	void processMesh(aiMesh* mesh, const aiScene* scene);
 
+	// Vertex data
+	std::vector<float> vertices;      // Vertex positions
+	std::vector<float> normals;       // Normals
+	std::vector<float> texCoords;     // Texture coordinates
 
-    // Vertex data
-    std::vector<float> vertices;      // Vertex positions
-    std::vector<float> normals;       // Normals
-    std::vector<float> texCoords;     // Texture coordinates
+	// Textures
+	std::map<std::string, GLTexture> textures;
 };
 
 #endif // MODEL_H

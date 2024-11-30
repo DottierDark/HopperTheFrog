@@ -154,6 +154,7 @@
     <ClCompile Include="src\Objects\Collectibles\Coin\Coin.cpp" />
     <ClCompile Include="src\Objects\Collectibles\Heart\Heart.cpp" />
     <ClCompile Include="src\Objects\Player\Frog.cpp" />
+    <ClCompile Include="src\Utils\3DModel\Model_3DS.cpp" />
     <ClCompile Include="src\Utils\SoundManager\SoundManager.cpp" />
     <ClCompile Include="src\HUD\UI.cpp" />
     <ClCompile Include="src\Utils\TexturesAndModels\GLTexture.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\Game Engine\GameStates\PlayState\PlayState.hpp" />
     <ClInclude Include="src\Game Engine\GameStates\State.hpp" />
     <ClInclude Include="src\Game Engine\Lighting\Lighting.hpp" />
+    <ClInclude Include="src\Utils\3DModel\Model_3DS.h" />
     <ClInclude Include="src\Utils\SoundManager\SoundManager.hpp" />
     <ClInclude Include="src\Game Engine\GameStates\StateManager.hpp" />
     <ClInclude Include="src\Utils\TexturesAndModels\GLTexture.h" />

@@ -4,6 +4,8 @@
 #include <Utils/TexturesAndModels/Model.h>
 #include <Utils/Vector3f.h>
 
+#include <Utils/3DModel/Model_3DS.h>
+
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
 #else
@@ -18,7 +20,7 @@ public:
 	void render();
 
 private:
-	Model model;
+	Model_3DS model;
 	Vector3f pos;
 };
 

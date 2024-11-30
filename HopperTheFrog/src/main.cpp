@@ -110,8 +110,8 @@ void myInit(void) {
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(45.0, 800.0 / 600.0, 1.0, 100.0);
-	glViewport(0, 0, 800, 600); // Ensure viewport matches window size
+	gluPerspective(45.0, windowWidth / windowHeight, 1.0, 100.0);
+	glViewport(0, 0, windowWidth, windowHeight); // Ensure viewport matches window size
 	glMatrixMode(GL_MODELVIEW);
 }
 
