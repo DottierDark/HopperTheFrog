@@ -2,7 +2,7 @@
 
 
 PlayState::PlayState() {
-	ground = Ground("assets/textures/ground.bmp");
+	ground = Ground();
 
 }
 
