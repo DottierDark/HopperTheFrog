@@ -25,7 +25,7 @@ public:
 
 	// Constructor
 	Frog();
-	Frog(const char* modelPath);
+	Frog(float x, float y, float z);
 
 	void update(float deltaTime);                        // Apply movement
 	void render();
@@ -45,6 +45,9 @@ public:
 	void setMoving(bool isMoving);
 
 	float getSpeed() const;
+
+	float getDirectionX() const;
+	float getDirectionZ() const;
 
 private:
 	Model_3DS model;

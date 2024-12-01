@@ -19,8 +19,8 @@
 
 
 // Global variables
-int windowHeight = 600;
-int windowWidth = 800;
+int windowHeight = 1080;
+int windowWidth = 1920;
 
 
 //time between frames
@@ -110,9 +110,25 @@ void myInit(void) {
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(45.0, windowWidth / windowHeight, 1.0, 100.0);
+
 	glViewport(0, 0, windowWidth, windowHeight); // Ensure viewport matches window size
 	glMatrixMode(GL_MODELVIEW);
+}
+
+//=======================================================================
+// Reshape Function
+//=======================================================================
+void myReshape(int w, int h)
+{
+	if (h == 0) {
+		h = 1;
+	}
+
+	windowWidth = w;
+	windowHeight = h;
+
+	// set the drawable region of the window
+	glViewport(0, 0, w, h);
 }
 
 
@@ -123,7 +139,7 @@ int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH); // Single buffering, RGB mode, depth buffer
 	glutInitWindowSize(windowWidth, windowHeight);                             // Set window size to 800x600
-	glutInitWindowPosition(100, 100);                         // Position the window
+	glutInitWindowPosition(0, 0);                         // Position the window
 	glutCreateWindow("HopperTheFrog");                        // Create the window with a title
 
 
@@ -150,7 +166,8 @@ int main(int argc, char** argv) {
 	// Register the mouse function
 	glutMouseFunc(MouseFunc);
 
-
+	// Register the reshape function
+	glutReshapeFunc(myReshape);
 
 	// Enter the GLUT event loop
 	glutMainLoop();

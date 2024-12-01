@@ -14,7 +14,7 @@ void PlayState::enter(const std::vector<std::string>& enterParams) {
 	level1 = Level1();
 	level2 = Level2();
 
-	frog = Frog();
+	frog = Frog(-200, 10, 0);
 	camera = Camera();
 	lighting = Lighting();
 
@@ -35,20 +35,22 @@ void PlayState::update(float deltaTime) {
 
 	// Update the frog
 	frog.update(deltaTime);
+	camera.update(frog.getX(), frog.getY(), frog.getZ(),
+		atan2(frog.getDirectionZ(), frog.getDirectionX()) * 180.0f / M_PI);
 
-	// Check if the frog has reached the portal
-	if (currentLevel == 1) {
-		if (frog.getX() > 10.0f && !level1Complete) {
-			level1Complete = true;
-			currentLevel = 2;
-		}
-	}
-	else if (currentLevel == 2) {
-		if (frog.getX() > 10.0f && !level2Complete) {
-			level2Complete = true;
-			currentLevel = 1;
-		}
-	}
+	//// Check if the frog has reached the portal
+	//if (currentLevel == 1) {
+	//	if (frog.getX() > 10.0f && !level1Complete) {
+	//		level1Complete = true;
+	//		currentLevel = 2;
+	//	}
+	//}
+	//else if (currentLevel == 2) {
+	//	if (frog.getX() > 10.0f && !level2Complete) {
+	//		level2Complete = true;
+	//		currentLevel = 1;
+	//	}
+	//}
 
 
 }
@@ -85,11 +87,11 @@ void PlayState::handleKeyPress(unsigned char key, int x, int y) {
 		//camera.moveX(frog.getSpeed() * deltaTime);
 		break;
 	}
-			//case '1': {
-			//	// Toggle between FPV and TPV
-			//	camera.toggleView(frog.getX(), frog.getY(), frog.getZ(), frog.getRotationY());
-			//	break;
-			//}
+	case '1': {
+		// Toggle between FPV and TPV
+		camera.toggleView(); break; // Toggle FPV/TPV
+
+	}
 	}
 }
 
