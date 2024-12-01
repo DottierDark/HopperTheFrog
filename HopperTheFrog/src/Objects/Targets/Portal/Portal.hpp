@@ -16,12 +16,12 @@
 class Portal
 {
 public:
+	Vector3f pos;
 	Portal();
 	Portal(float x, float y, float z);
 	void render();
 
 private:
 	Model_3DS model;
-	Vector3f pos;
 };
 

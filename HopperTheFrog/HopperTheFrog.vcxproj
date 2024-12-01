@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Objects\Platform\LilyPad.cpp" />
     <ClCompile Include="src\Environment\Ground\Ground.cpp" />
     <ClCompile Include="src\Objects\Targets\House\House.cpp" />
     <ClCompile Include="src\Objects\Targets\Portal\Portal.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="src\Environment\Street\Street.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Objects\Platform\LilyPad.h" />
     <ClInclude Include="src\Environment\Ground\Ground.h" />
     <ClInclude Include="src\Objects\Player\Frog.hpp" />
     <ClInclude Include="src\Objects\Targets\House\House.hpp" />

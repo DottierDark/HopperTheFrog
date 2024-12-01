@@ -1,7 +1,11 @@
 #pragma once
 
-#include <Game Engine/Camera/Camera.hpp>
-#include <Game Engine/Lighting/Lighting.hpp>
+#include <vector>
+
+#include <Objects/Targets/House/House.hpp>
+#include <Objects/Obstacles/River/River.hpp>
+#include <Objects/Collectibles/Heart/Heart.hpp>
+#include <Objects/Platform/LilyPad.h>
 
 #include <iostream>
 
@@ -16,10 +20,10 @@ public:
 	Level2();
 	void update(float deltaTime);
 	void render();
-
-private:
 	// Add Level1 attributes
-	Camera camera;
-	Lighting lighting;
+	std::vector<River> rivers;
+	std::vector<LilyPad> lilyPads;
+	std::vector<Heart> hearts;
+	House house;
 };
 

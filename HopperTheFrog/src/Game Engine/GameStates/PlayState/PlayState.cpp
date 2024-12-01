@@ -38,19 +38,17 @@ void PlayState::update(float deltaTime) {
 	camera.update(frog.getX(), frog.getY(), frog.getZ(),
 		atan2(frog.getDirectionZ(), frog.getDirectionX()) * 180.0f / M_PI);
 
-	//// Check if the frog has reached the portal
-	//if (currentLevel == 1) {
-	//	if (frog.getX() > 10.0f && !level1Complete) {
-	//		level1Complete = true;
-	//		currentLevel = 2;
-	//	}
-	//}
-	//else if (currentLevel == 2) {
-	//	if (frog.getX() > 10.0f && !level2Complete) {
-	//		level2Complete = true;
-	//		currentLevel = 1;
-	//	}
-	//}
+	// Check if the frog has reached the portal
+	if (currentLevel == 1) {
+		if (frog.hasCollided(level1.portal.pos, 50)) {
+			level1Complete = true;
+			currentLevel = 2;
+			frog.resetPosition();
+		}
+	}
+	else if (currentLevel == 2) {
+
+	}
 
 
 }

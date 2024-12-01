@@ -27,6 +27,8 @@ public:
 	Frog();
 	Frog(float x, float y, float z);
 
+	void resetPosition();
+
 	void update(float deltaTime);                        // Apply movement
 	void render();
 
@@ -49,6 +51,8 @@ public:
 	float getDirectionX() const;
 	float getDirectionZ() const;
 
+	bool hasCollided(Vector3f pos, float radius);
+
 private:
 	Model_3DS model;
 	Vector3f pos;
@@ -56,6 +60,7 @@ private:
 	bool moving;
 	float speed;
 
+	Vector3f initialPos;
 
 
 };

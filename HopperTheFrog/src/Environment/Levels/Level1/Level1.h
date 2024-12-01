@@ -30,14 +30,7 @@ public:
 	void update(float deltaTime);
 	void render();
 
-
-private:
-
 	// Add Level1 attributes
-
-
-
-
 	std::vector<Street> streets;
 	std::vector<Car> cars;
 	std::vector<Coin> coins;

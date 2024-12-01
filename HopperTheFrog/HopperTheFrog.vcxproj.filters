@@ -93,6 +93,9 @@
     <ClCompile Include="src\Environment\Street\Street.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Objects\Platform\LilyPad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game Engine\Camera\Camera.hpp">
@@ -168,6 +171,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Environment\Street\Street.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Objects\Platform\LilyPad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
