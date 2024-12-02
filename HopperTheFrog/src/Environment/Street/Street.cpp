@@ -11,7 +11,7 @@ Street::Street(float x, float y, float z) {
 	pos.z = z;
 	model.Load("assets/models/Street/Road.3ds"); // Load the street model
 
-	model.scale = 2.0f; // Scale the street
+	model.rot.y = 90.0f; // Rotate the street
 }
 
 
@@ -22,7 +22,7 @@ void Street::update(float deltaTime) {
 void Street::render() {
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
-	glScalef(1.0f, 1.0f, 2.5f); // Scale the street
+	glScalef(6.0f, 1.0f, 3.0f); // Scale the street
 	model.Draw();
 	glPopMatrix();
 }

@@ -8,7 +8,7 @@ Frog::Frog() {
 	model.Load("assets/models/frog/frog.3ds");
 	pos.x = 0.0f;
 	pos.y = 0.0f;
-	pos.z = 0.0f;
+	pos.z = 142.0f;
 
 	initialPos = pos;
 
@@ -24,7 +24,7 @@ Frog::Frog(float x, float y, float z) {
 	model.Load("assets/models/frog/frog.3ds");
 	pos.x = x;
 	pos.y = y;
-	pos.z = y;
+	pos.z = z;
 
 	initialPos = pos;
 
@@ -95,15 +95,13 @@ bool Frog::hasCollided(Vector3f pos, float radius) {
 }
 
 
+
+
 void Frog::update(float deltaTime) {
 	if (moving) {
 		// Move player in the direction they are facing
 		pos = pos + direction * speed * deltaTime;
-
-
-
 	}
-
 }
 
 

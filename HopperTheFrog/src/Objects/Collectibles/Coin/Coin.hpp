@@ -17,8 +17,10 @@ public:
 	Coin(float x, float y, float z);
 	void update(float deltaTime);
 	void render();
+	Vector3f pos;
 
 private:
 	Model_3DS model;
-	Vector3f pos;
+
+	float baseY;
 };

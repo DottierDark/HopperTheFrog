@@ -14,13 +14,16 @@
 class Car {
 public:
 	Car();
-	Car(float x, float y, float z, float speed);
+	Car(float x, float y, float z);
 	void update(float deltaTime);
 	void render();
+	Vector3f pos;
+	// reached the end of the street
+	bool reachedEnd();
 
 private:
 	Model_3DS model;
-	Vector3f pos;
-	float speed = 0.5f;
+
+	float speed;
 };
 

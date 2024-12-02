@@ -194,6 +194,16 @@
     <ClInclude Include="src\Environment\Street\Street.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\models\Car\Car.3ds" />
+    <None Include="assets\models\Coin\coin.3ds" />
+    <None Include="assets\models\frog\Frog.3ds" />
+    <None Include="assets\models\heart\heart.3ds" />
+    <None Include="assets\models\Lily pads\water lily.3ds" />
+    <None Include="assets\models\Portal\Portal_1.3ds" />
+    <None Include="assets\models\River\river.3ds" />
+    <None Include="assets\models\Street\Road.3ds" />
+    <None Include="assets\models\Sun\sun.3ds" />
+    <None Include="assets\models\Wall\fence.3ds" />
     <None Include="models\bicycle.3ds" />
     <None Include="models\bus.3ds" />
     <None Include="models\car.3ds" />
@@ -216,6 +226,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\models\frog\frog_papermo.bmp" />
+    <Image Include="assets\models\Lily pads\untitled.bmp" />
+    <Image Include="assets\textures\ground.bmp" />
+    <Image Include="assets\textures\streettexture.jpeg" />
     <Image Include="models\Ground Textures\ground.bmp" />
     <Image Include="models\Portal Textures\Portal\Portal_Color.png" />
     <Image Include="models\Portal Textures\Portal\Portal_Displacement.png" />
