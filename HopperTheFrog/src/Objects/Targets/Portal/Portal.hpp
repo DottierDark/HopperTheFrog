@@ -7,7 +7,6 @@
 
 
 #ifdef __APPLE__
-#include <Utils/TexturesAndModels/Model.h>
 #include <GLUT/glut.h> // Include GLUT for macOS
 #else
 #include <Utils/3DModel/Model_3DS.h>
