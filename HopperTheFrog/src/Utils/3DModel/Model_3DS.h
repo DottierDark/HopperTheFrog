@@ -74,7 +74,7 @@
 // I decided to use my GLTexture class b/c adding all of its functions
 // Would have greatly bloated the model class's code
 // Just replace this with your favorite texture class
-#include <Utils/TexturesAndModels/GLTexture.h>
+#include <Utils/Textures/GLTexture.h>
 
 #include <stdio.h>
 

@@ -1,5 +1,5 @@
 #pragma once
-#include <Utils/TexturesAndModels/GLTexture.h>
+#include <Utils/Textures/GLTexture.h>
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
