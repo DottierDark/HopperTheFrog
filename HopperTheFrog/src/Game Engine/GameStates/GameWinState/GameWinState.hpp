@@ -32,8 +32,6 @@ public:
 	void renderStrokeText(const char* text, int x, int y, float scale);
 
 private:
-        Frog frog;
-		Level1 level1; // Add Level1 instance
-	    Level2 level2; // Add Level2 instance
+	int playerScore = 0;
 };
 

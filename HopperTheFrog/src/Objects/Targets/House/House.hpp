@@ -13,6 +13,7 @@ class House
 {
 public:
 	House();
+	House(float x, float y, float z);
 	void render();
 	void update(float deltaTime);
 	Vector3f pos;

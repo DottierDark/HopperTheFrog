@@ -99,7 +99,38 @@ void PlayState::update(float deltaTime) {
 		}
 	}
 	else if (currentLevel == 2) {
-		level2.update(deltaTime);
+		for (auto it = level2.lilyPads.begin(); it != level2.lilyPads.end();) {
+			// Check if the frog has collided with a car
+			if (frog.hasCollided(it->pos, 15)) { // Adjust collision radius as needed
+				// Handle frog-car collision (e.g., reset position, reduce life, etc.)
+				frog.resetPosition();
+				frog.takeDamage();
+				if (frog.getLives() == 0) {
+					// Game over lose
+					gStateMachine.change("gameover", { std::to_string(frog.getScore()) });
+				}
+			}
+			++it; // Move to the next car
+		}
+
+		for (auto it = level2.hearts.begin(); it != level2.hearts.end();) {
+			// Check if the coin has been collected
+			if (frog.hasCollided(it->pos, 10)) { // Adjust collision radius as needed
+				// Handle coin collection (e.g., increase score, etc.)
+				it = level2.hearts.erase(it); // Remove the coin and update the iterator
+				// Increase the player's score
+				frog.heal();
+			}
+			else {
+				++it; // Move to the next coin
+			}
+
+		}
+
+		if (frog.hasCollided(level2.house.pos, 30)) {
+			// Game over win
+			gStateMachine.change("gameover", { std::to_string(frog.getScore()) });
+		}
 	}
 
 
@@ -173,6 +204,9 @@ void PlayState::render() {
 
 	// Draw the frog
 	frog.render();
+
+	// Draw the score and lives
+	frog.renderHUD();
 }
 
 void PlayState::exit() {

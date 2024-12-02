@@ -20,10 +20,19 @@ public:
 	Level2();
 	void update(float deltaTime);
 	void render();
+
 	// Add Level1 attributes
 	std::vector<River> rivers;
 	std::vector<LilyPad> lilyPads;
 	std::vector<Heart> hearts;
 	House house;
+
+private:
+
+	// Add Level1 methods
+	void spawnObstacle();
+	void spawnObstacle2();
+	void spawnCoin();
+
 };
 

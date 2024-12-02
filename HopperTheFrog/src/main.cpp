@@ -22,6 +22,8 @@
 int windowHeight = 1080;
 int windowWidth = 1920;
 
+int groundSize = 150;
+
 
 //time between frames
 float lastTime = 0.0f;

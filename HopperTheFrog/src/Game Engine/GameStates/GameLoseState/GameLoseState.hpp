@@ -28,11 +28,9 @@ public:
 	void handleKeyRelease(unsigned char key, int x, int y) override;
 	void render() override;
 	void exit() override;
-    void renderStrokeText(const char* text, int x, int y, float scale);
+	void renderStrokeText(const char* text, int x, int y, float scale);
 
 private:
-        Frog frog;
-		Level1 level1; // Add Level1 instance
-	    Level2 level2; // Add Level2 instance
+	int playerScore = 0;
 };
 

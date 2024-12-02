@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include <cmath>
 
 
@@ -65,6 +66,8 @@ public:
 
 	bool hasCollided(Vector3f pos, float radius);
 
+	void renderHUD();
+
 private:
 	Model_3DS model;
 	Vector3f pos;
@@ -76,5 +79,10 @@ private:
 
 	Vector3f initialPos;
 
+	void drawHeart(float x, float y, float size);
+
+	void drawHealth();
+
+	void drawScore();
 
 };

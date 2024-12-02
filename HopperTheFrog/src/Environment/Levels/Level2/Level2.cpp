@@ -1,42 +1,53 @@
 #include "Level2.h"
 
 Level2::Level2() {
-	// Initialize Level2 attributes
-	// Create a house object
-	house = House();
-	// Add River objects to the rivers vector
-	rivers.push_back(River(0.0f, 0.0f, 0.0f));
-	rivers.push_back(River(0.0f, 0.0f, 0.0f));
-	// Add LilyPad objects to the lilyPads vector
-	lilyPads.push_back(LilyPad(0.0f, 0.0f, 0.0f));
-	lilyPads.push_back(LilyPad(0.0f, 0.0f, 0.0f));
-	// Add Heart objects to the hearts vector
-	hearts.push_back(Heart(0.0f, 0.0f, 0.0f));
-	hearts.push_back(Heart(0.0f, 0.0f, 0.0f));
+	// Load the streets
+	rivers.push_back(River(0.0f, 0.0f, -60.0f));
+	rivers.push_back(River(0.0f, 0.0f, 60.0f));
+
+
+	// Load the portal
+	house = House(0, 0, -120);
+
+	for (int i = 0; i < 3; i++) {
+		spawnCoin();
+	}
+
+	for (int i = 0; i < 3; i++) {
+		spawnObstacle();
+	}
+
+	for (int i = 0; i < 3; i++) {
+		spawnObstacle2();
+	}
+}
+
+void Level2::spawnObstacle() {
+	float x = static_cast<float>(rand() % 200 - 100); // Random x
+	// Randomly pick either 60 or -60 for the z value
+	float z = -60.0f;
+	lilyPads.push_back(LilyPad(x, 0.0f, z)); // Example obstacle
+}
+
+void Level2::spawnObstacle2() {
+	float x = static_cast<float>(rand() % 200 - 100); // Random x
+	// Randomly pick either 60 or -60 for the z value
+	float z = 60.0f;
+	lilyPads.push_back(LilyPad(x, 0.0f, z)); // Example obstacle
+}
+
+void Level2::spawnCoin() {
+	float x = static_cast<float>(rand() % 200 - 100); // Random x
+	float z = (rand() % 2 == 0) ? 60.0f : -60.0f; // Random z
+	hearts.push_back(Heart(x, 3, z));
 }
 
 void Level2::update(float deltaTime) {
-
-
 }
 
-
 void Level2::render() {
-
-	// Render Level2 attributes
-	// Render House object
+	for (auto& river : rivers) river.render();
+	for (auto& lilyPad : lilyPads) lilyPad.render();
+	for (auto& heart : hearts) heart.render();
 	house.render();
-	// Render River objects
-	for (int i = 0; i < rivers.size(); i++) {
-		rivers[i].render();
-	}
-	// Render LilyPad objects
-	for (int i = 0; i < lilyPads.size(); i++) {
-		lilyPads[i].render();
-	}
-	// Render Heart objects
-	for (int i = 0; i < hearts.size(); i++) {
-		hearts[i].render();
-	}
-
 }

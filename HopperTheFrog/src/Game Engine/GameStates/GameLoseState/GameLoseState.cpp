@@ -11,93 +11,106 @@ GameLoseState::GameLoseState() {
 }
 
 void GameLoseState::enter(const std::vector<std::string>& enterParams) {
-    // Any initialization required when entering this state
+	// Any initialization required when entering this state
+
+	if (!enterParams.empty()) {
+		playerScore = std::stoi(enterParams[0]);
+	}
 }
 
 void GameLoseState::update(float deltaTime) {
-    // Any per-frame updates (not needed for static Game Over screen)
+	// Any per-frame updates (not needed for static Game Over screen)
 }
 
 void GameLoseState::handleMouseClick(int button, int state, int x, int y) {
-    // Mouse input handling (not used in this example)
+	// Mouse input handling (not used in this example)
 }
 
 void GameLoseState::handleKeyPress(unsigned char key, int x, int y) {
-    switch (key) {
-        case 'r': // Restart game
-        case 'R': // Allow uppercase
-            gStateMachine.change("play", {});
-            break;
-        case 'q': // Quit game
-            std::exit(0);
-            break;
-        default:
-            break;
-    }
+	switch (key) {
+	case 'r': // Restart game
+	case 'R': // Allow uppercase
+		gStateMachine.change("play", {});
+		break;
+	case 'q': // Quit game
+		std::exit(0);
+		break;
+	default:
+		break;
+	}
 }
 
 void GameLoseState::handleKeyRelease(unsigned char key, int x, int y) {
-    // Not used in this example
+	// Not used in this example
 }
 
 void GameLoseState::render() {
-    // Set up the 2D rendering environment
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-    gluOrtho2D(0, windowWidth, 0, windowHeight);
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
+	// Save the current OpenGL state
+	glPushAttrib(GL_ALL_ATTRIB_BITS);
 
-    // Clear the screen
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Dark background
-    glClear(GL_COLOR_BUFFER_BIT);
+	// Set up the 2D rendering environment
+	glDisable(GL_LIGHTING); // Disable lighting for 2D rendering
+	glDisable(GL_DEPTH_TEST); // Disable depth test for HUD
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    // Render "Game Over" text with stroke font
-    glColor3f(1.0f, 0.0f, 0.0f); // Red color
-    renderStrokeText("GAME OVER", windowWidth / 2, windowHeight / 2 + 120, 0.9f);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, windowWidth, 0, windowHeight);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
 
-    // Render "Restart" and "Quit" options with stroke font
-    glColor3f(1.0f, 1.0f, 1.0f); // White color
-    renderStrokeText("Press R to Restart!", windowWidth / 2, windowHeight / 2 + 40, 0.4f);
+	// Clear the screen
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Dark background
+	glClear(GL_COLOR_BUFFER_BIT);
 
-    renderStrokeText("Press Q to Quit :(", windowWidth / 2, windowHeight / 2 - 20, 0.4f);
+	// Render "Game Over" text with stroke font
+	glColor3f(1.0f, 0.0f, 0.0f); // Red color
+	renderStrokeText("GAME OVER", windowWidth / 2, windowHeight / 2 + 120, 0.9f);
 
-    //green color
-    glColor3f(0.0f, 1.0f, 0.0f);
-    renderStrokeText("Every Journey Begins With A Single Hop", windowWidth / 2, windowHeight / 2 - 120, 0.2f);
+	// Render "Restart" and "Quit" options with stroke font
+	glColor3f(1.0f, 1.0f, 1.0f); // White color
+	renderStrokeText("Press R to Restart!", windowWidth / 2, windowHeight / 2 + 40, 0.4f);
 
-    // Restore matrices
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
-    glPopMatrix();
+	renderStrokeText("Press Q to Quit :(", windowWidth / 2, windowHeight / 2 - 20, 0.4f);
 
-    // Flush OpenGL commands
-    glFlush();
+	// Render motivational text in green
+	glColor3f(0.0f, 1.0f, 0.0f);
+	renderStrokeText("Every Journey Begins With A Single Hop", windowWidth / 2, windowHeight / 2 - 120, 0.2f);
+
+	// Restore matrices
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+
+	// Restore the OpenGL state
+	glPopAttrib();
 }
+
 void GameLoseState::exit() {
-    // Any cleanup required when exiting this state
+	// Any cleanup required when exiting this state
 }
 
 // Helper function to render stroke text (scalable and center-aligned)
 void GameLoseState::renderStrokeText(const char* text, int x, int y, float scale) {
-    // Calculate the width of the text for centering
-    float textWidth = 0.0f;
-    for (const char* c = text; *c != '\0'; c++) {
-        textWidth += glutStrokeWidth(GLUT_STROKE_ROMAN, *c);
-    }
+	// Calculate the width of the text for centering
+	float textWidth = 0.0f;
+	for (const char* c = text; *c != '\0'; c++) {
+		textWidth += glutStrokeWidth(GLUT_STROKE_ROMAN, *c);
+	}
 
-    // Adjust x to center-align the text
-    float adjustedX = x - (textWidth * scale) / 2.0f;
+	// Adjust x to center-align the text
+	float adjustedX = x - (textWidth * scale) / 2.0f;
 
-    // Render the text
-    glPushMatrix();
-    glTranslatef(adjustedX, y, 0); // Move to position
-    glScalef(scale, scale, scale); // Scale the text
-    for (const char* c = text; *c != '\0'; c++) {
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, *c);
-    }
-    glPopMatrix();
+	// Render the text
+	glPushMatrix();
+	glTranslatef(adjustedX, y, 0); // Move to position
+	glScalef(scale, scale, scale); // Scale the text
+	for (const char* c = text; *c != '\0'; c++) {
+		glutStrokeCharacter(GLUT_STROKE_ROMAN, *c);
+	}
+	glPopMatrix();
 }
