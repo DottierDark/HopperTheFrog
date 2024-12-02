@@ -1,14 +1,16 @@
 #pragma once
 
 #include <iostream>
-#include <Utils/TexturesAndModels/Model.h>
+
 #include <Utils/Vector3f.h>
 
-#include <Utils/3DModel/Model_3DS.h>
+
 
 #ifdef __APPLE__
+#include <Utils/TexturesAndModels/Model.h>
 #include <GLUT/glut.h> // Include GLUT for macOS
 #else
+#include <Utils/3DModel/Model_3DS.h>
 #include <GL/glut.h>   // Include GLUT for other platforms
 #endif
 
