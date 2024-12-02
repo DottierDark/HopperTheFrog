@@ -41,16 +41,16 @@ void Camera::update(float playerX, float playerY, float playerZ, float playerRot
 	if (currentView == THIRD_PERSON) {
 		// Position the camera behind and above the player
 		eye = Vector3f(
-			playerX + 10.0f,   // Offset backward (relative to X)
+			playerX + 20.0f,   // Offset backward (relative to X)
 			playerY + 30.0f,                                     // Above the player
 			playerZ + 20.0f // Behind the player (relative to Z)
 		);
 
 		// Look slightly ahead of the player
 		center = Vector3f(
-			playerX + 0.0f,  // Forward (relative to X)
-			playerY + 0.0f,                                    // At player's height
-			playerZ + 0.0f  // Forward (relative to Z)
+			playerX + 20.0f,  // positive X is right and negative X is left
+			playerY + 5.0f,  // At player's height
+			playerZ + -30.0f  // negative Z is forward and positive Z is backward
 		);
 
 		FOV = 60;

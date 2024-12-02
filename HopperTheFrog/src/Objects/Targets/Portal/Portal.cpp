@@ -18,12 +18,14 @@ Portal::Portal(float x, float y, float z) {
 	pos.z = z;
 
 	model.scale = 10.0f;
+	model.rot.y = -90.0f;
 }
 
 
 void Portal::render() {
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
+
 	model.Draw();
 	glPopMatrix();
 }

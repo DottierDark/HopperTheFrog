@@ -96,6 +96,9 @@
     <ClCompile Include="src\Objects\Platform\LilyPad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils\Textures\GLTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game Engine\Camera\Camera.hpp">
@@ -176,6 +179,9 @@
     <ClInclude Include="src\Objects\Platform\LilyPad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utils\Textures\GLTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -198,6 +204,16 @@
     <None Include="models\StreetLight.3ds" />
     <None Include="models\taxi.3ds" />
     <None Include="models\Wall.3ds" />
+    <None Include="assets\models\Car\Car.3ds" />
+    <None Include="assets\models\Coin\coin.3ds" />
+    <None Include="assets\models\frog\Frog.3ds" />
+    <None Include="assets\models\heart\heart.3ds" />
+    <None Include="assets\models\Lily pads\water lily.3ds" />
+    <None Include="assets\models\Portal\Portal_1.3ds" />
+    <None Include="assets\models\River\river.3ds" />
+    <None Include="assets\models\Street\Road.3ds" />
+    <None Include="assets\models\Sun\sun.3ds" />
+    <None Include="assets\models\Wall\fence.3ds" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="models\Ground Textures\ground.bmp">
@@ -237,6 +253,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="models\Portal Textures\Stone Slabs\Concrete024_2K_Roughness.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\models\frog\frog_papermo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\models\Lily pads\untitled.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\ground.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\streettexture.jpeg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

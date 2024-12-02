@@ -36,5 +36,18 @@ public:
 	std::vector<Coin> coins;
 	Portal portal;
 
+private:
+
+	// Add Level1 methods
+	void spawnObstacle();
+	void spawnObstacle2();
+	void spawnCoin();
+	float timeSinceLastObstacleStreet1 = 0.0f;
+	float timeSinceLastObstacleStreet2 = 0.0f;
+	float timeSinceLastCoin = 0.0f;
+	float obstacleSpawnRate = 2.0f;
+	float obstacleSpawnRate2 = 1.5f;
+	float coinSpawnRate = 5.0f;
+
 };
 

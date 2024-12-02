@@ -158,8 +158,7 @@
     <ClCompile Include="src\Utils\3DModel\Model_3DS.cpp" />
     <ClCompile Include="src\Utils\SoundManager\SoundManager.cpp" />
     <ClCompile Include="src\HUD\UI.cpp" />
-    <ClCompile Include="src\Utils\TexturesAndModels\GLTexture.cpp" />
-    <ClCompile Include="src\Utils\TexturesAndModels\Model.cpp" />
+    <ClCompile Include="src\Utils\Textures\GLTexture.cpp" />
     <ClCompile Include="src\Utils\Utils.cpp" />
     <ClCompile Include="src\Game Engine\GameStates\StateManager.cpp" />
     <ClCompile Include="src\Utils\Vector3f.cpp" />
@@ -187,13 +186,21 @@
     <ClInclude Include="src\Utils\3DModel\Model_3DS.h" />
     <ClInclude Include="src\Utils\SoundManager\SoundManager.hpp" />
     <ClInclude Include="src\Game Engine\GameStates\StateManager.hpp" />
-    <ClInclude Include="src\Utils\TexturesAndModels\GLTexture.h" />
-    <ClInclude Include="src\Utils\TexturesAndModels\Model.h" />
-    <ClInclude Include="src\Utils\TexturesAndModels\stb_image.h" />
+    <ClInclude Include="src\Utils\Textures\GLTexture.h" />
     <ClInclude Include="src\Utils\Vector3f.h" />
     <ClInclude Include="src\Environment\Street\Street.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\models\Car\Car.3ds" />
+    <None Include="assets\models\Coin\coin.3ds" />
+    <None Include="assets\models\frog\Frog.3ds" />
+    <None Include="assets\models\heart\heart.3ds" />
+    <None Include="assets\models\Lily pads\water lily.3ds" />
+    <None Include="assets\models\Portal\Portal_1.3ds" />
+    <None Include="assets\models\River\river.3ds" />
+    <None Include="assets\models\Street\Road.3ds" />
+    <None Include="assets\models\Sun\sun.3ds" />
+    <None Include="assets\models\Wall\fence.3ds" />
     <None Include="models\bicycle.3ds" />
     <None Include="models\bus.3ds" />
     <None Include="models\car.3ds" />
@@ -216,6 +223,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\models\frog\frog_papermo.bmp" />
+    <Image Include="assets\models\Lily pads\untitled.bmp" />
+    <Image Include="assets\textures\ground.bmp" />
+    <Image Include="assets\textures\streettexture.jpeg" />
     <Image Include="models\Ground Textures\ground.bmp" />
     <Image Include="models\Portal Textures\Portal\Portal_Color.png" />
     <Image Include="models\Portal Textures\Portal\Portal_Displacement.png" />

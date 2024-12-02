@@ -3,7 +3,9 @@
 
 PlayState::PlayState() {
 	ground = Ground();
-
+	frog = Frog(0, 5, 142);
+	camera = Camera();
+	lighting = Lighting();
 }
 
 void PlayState::enter(const std::vector<std::string>& enterParams) {
@@ -14,7 +16,7 @@ void PlayState::enter(const std::vector<std::string>& enterParams) {
 	level1 = Level1();
 	level2 = Level2();
 
-	frog = Frog(-200, 10, 0);
+	frog = Frog(0, 5, 142);
 	camera = Camera();
 	lighting = Lighting();
 
@@ -23,12 +25,7 @@ void PlayState::enter(const std::vector<std::string>& enterParams) {
 
 void PlayState::update(float deltaTime) {
 
-	if (currentLevel == 1) {
-		level1.update(deltaTime);
-	}
-	else if (currentLevel == 2) {
-		level2.update(deltaTime);
-	}
+
 
 	// Update the lighting
 	lighting.updateLighting(deltaTime);
@@ -40,14 +37,46 @@ void PlayState::update(float deltaTime) {
 
 	// Check if the frog has reached the portal
 	if (currentLevel == 1) {
+		level1.update(deltaTime);
+
 		if (frog.hasCollided(level1.portal.pos, 50)) {
 			level1Complete = true;
 			currentLevel = 2;
 			frog.resetPosition();
 		}
+
+		for (auto it = level1.cars.begin(); it != level1.cars.end();) {
+			it->update(deltaTime);
+
+			// Check if the car reached the end of the street
+			if (it->reachedEnd()) {
+				it = level1.cars.erase(it); // Remove the car and update the iterator
+			}
+			else {
+				// Check if the frog has collided with a car
+				if (frog.hasCollided(it->pos, 25)) { // Adjust collision radius as needed
+					// Handle frog-car collision (e.g., reset position, reduce life, etc.)
+					frog.resetPosition();
+				}
+
+				++it; // Move to the next car
+			}
+		}
+		for (auto it = level1.coins.begin(); it != level1.coins.end();) {
+			it->update(deltaTime);
+
+			// Check if the coin has been collected
+			if (frog.hasCollided(it->pos, 10)) { // Adjust collision radius as needed
+				// Handle coin collection (e.g., increase score, etc.)
+				it = level1.coins.erase(it); // Remove the coin and update the iterator
+			}
+			else {
+				++it; // Move to the next coin
+			}
+		}
 	}
 	else if (currentLevel == 2) {
-
+		level2.update(deltaTime);
 	}
 
 

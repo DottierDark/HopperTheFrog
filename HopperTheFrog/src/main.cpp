@@ -63,6 +63,12 @@ void Update(int value) {
 
 // Keyboard callback for handling player actions
 void KeyBoardFunc(unsigned char key, int x, int y) {
+
+	switch (key) {
+	case 27: // Escape key
+		exit(0);
+		break;
+	}
 	// Call the playerAction function from the PlayState
 	gStateMachine.handleKeyPress(key, x, y);
 }
