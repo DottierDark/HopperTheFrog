@@ -1,11 +1,19 @@
 #include <Game Engine/GameStates/PlayState/PlayState.hpp>
 
 
+extern int windowHeight;
+extern int windowWidth;
+
+extern StateManager gStateMachine;
+
 PlayState::PlayState() {
 	ground = Ground();
 	frog = Frog(0, 5, 142);
 	camera = Camera();
 	lighting = Lighting();
+	currentLevel = 1;
+	level1Complete = false;
+
 }
 
 void PlayState::enter(const std::vector<std::string>& enterParams) {
@@ -21,6 +29,13 @@ void PlayState::enter(const std::vector<std::string>& enterParams) {
 	lighting = Lighting();
 
 	currentLevel = 1;
+	level1Complete = false;
+	level1Complete = false;
+
+	// Set the camera view
+	level1 = Level1();
+	level2 = Level2();
+
 }
 
 void PlayState::update(float deltaTime) {
@@ -39,7 +54,7 @@ void PlayState::update(float deltaTime) {
 	if (currentLevel == 1) {
 		level1.update(deltaTime);
 
-		if (frog.hasCollided(level1.portal.pos, 50)) {
+		if (frog.hasCollided(level1.portal.pos, 40)) {
 			level1Complete = true;
 			currentLevel = 2;
 			frog.resetPosition();
@@ -57,6 +72,11 @@ void PlayState::update(float deltaTime) {
 				if (frog.hasCollided(it->pos, 25)) { // Adjust collision radius as needed
 					// Handle frog-car collision (e.g., reset position, reduce life, etc.)
 					frog.resetPosition();
+					frog.takeDamage();
+					if (frog.getLives() == 0) {
+						// Game over lose
+						gStateMachine.change("gameoverlose", { std::to_string(frog.getScore()) });
+					}
 				}
 
 				++it; // Move to the next car
@@ -69,6 +89,9 @@ void PlayState::update(float deltaTime) {
 			if (frog.hasCollided(it->pos, 10)) { // Adjust collision radius as needed
 				// Handle coin collection (e.g., increase score, etc.)
 				it = level1.coins.erase(it); // Remove the coin and update the iterator
+
+				// Increase the player's score
+				frog.addScore();
 			}
 			else {
 				++it; // Move to the next coin

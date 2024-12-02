@@ -43,6 +43,18 @@ public:
 	void moveLeft();
 	void moveRight();
 
+	// take a life
+	void takeDamage();
+
+	// get lives
+	void heal();
+
+	int getLives() const;
+
+	int getScore() const;
+
+	void addScore();
+
 	// Toggle movement state
 	void setMoving(bool isMoving);
 
@@ -59,6 +71,8 @@ private:
 	Vector3f direction;
 	bool moving;
 	float speed;
+	int score = 0;
+	int lives = 3;
 
 	Vector3f initialPos;
 

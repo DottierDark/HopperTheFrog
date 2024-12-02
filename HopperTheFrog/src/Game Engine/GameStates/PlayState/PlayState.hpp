@@ -3,6 +3,8 @@
 //includes glew needs to be included before gl.h
 #include <Environment/Ground/Ground.h>
 
+#include <Game Engine/GameStates/StateManager.hpp>
+
 #include <Objects/Player/Frog.hpp>
 #include <Environment/Levels/Level1/Level1.h>
 #include <Environment/Levels/Level2/Level2.h>
@@ -20,10 +22,6 @@
 
 #define M_PI 3.14159265358979323846
 #endif // !M_PI
-
-
-extern int windowHeight;
-extern int windowWidth;
 
 class PlayState : public State {
 public:

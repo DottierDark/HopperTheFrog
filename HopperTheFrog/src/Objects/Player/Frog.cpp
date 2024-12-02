@@ -12,6 +12,10 @@ Frog::Frog() {
 
 	initialPos = pos;
 
+	lives = 3;
+
+	score = 0;
+
 	moving = false;
 	direction = Vector3f(0.0f, 0.0f, 1.0f);
 
@@ -28,6 +32,10 @@ Frog::Frog(float x, float y, float z) {
 
 	initialPos = pos;
 
+	lives = 3;
+
+	score = 0;
+
 	direction = Vector3f(0.0f, 0.0f, 1.0f);
 
 	moving = false;
@@ -41,6 +49,25 @@ void Frog::resetPosition() {
 
 }
 
+void Frog::takeDamage() {
+	lives--;
+}
+
+void Frog::heal() {
+	lives++;
+}
+
+int Frog::getLives() const {
+	return lives;
+}
+
+int Frog::getScore() const {
+	return score;
+}
+
+void Frog::addScore() {
+	score += 100;
+}
 
 float Frog::getX() const { return pos.x; }
 float Frog::getY() const { return pos.y; }

@@ -1,9 +1,6 @@
-#include <Environment/Levels/Level1/Level1.h>
+#include "Level1.h"
 
 Level1::Level1() {
-
-
-
 	// Load the streets
 	streets.push_back(Street(0.0f, 0.0f, -60.0f));
 	streets.push_back(Street(0.0f, 0.0f, 60.0f));
