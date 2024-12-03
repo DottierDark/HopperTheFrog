@@ -22,9 +22,6 @@ PlayState::PlayState() {
 
 void PlayState::enter(const std::vector<std::string>& enterParams) {
 
-	// Draw the lighting
-	lighting.setupLighting();
-
 	level1 = Level1();
 	level2 = Level2();
 
@@ -149,40 +146,38 @@ void PlayState::update(float deltaTime) {
 
 
 void PlayState::handleMouseClick(int button, int state, int x, int y) {
+	switch (button)
+	{
+	case GLUT_LEFT_BUTTON:
+		if (state == GLUT_DOWN) {
+			camera.toggleView(); break; // Toggle FPV/TPV
+		}
+	default:
+		break;
+	}
 }
 
 void PlayState::handleKeyPress(unsigned char key, int x, int y) {
 	switch (key) {
 	case 'w': {
 		frog.moveForward();
-		//// Move camera forward with the player
-		//camera.moveZ(-frog.getSpeed() * deltaTime);
 		break;
 	}
 	case 's': {
 		frog.moveBackward();
-
-		//// Move camera backward with the player
-		//camera.moveZ(frog.getSpeed() * deltaTime);
 		break;
 	}
 	case 'a': {
 		frog.moveLeft();
-
-		//// Move camera left with the player
-		//camera.moveX(-frog.getSpeed() * deltaTime);
 		break;
 	}
 	case 'd': {
 		frog.moveRight();
-		//// Move camera right with the player
-		//camera.moveX(frog.getSpeed() * deltaTime);
 		break;
 	}
 	case '1': {
 		// Toggle between FPV and TPV
 		camera.toggleView(); break; // Toggle FPV/TPV
-
 	}
 	}
 }
@@ -218,6 +213,9 @@ void PlayState::render() {
 
 	// Draw the score and lives
 	frog.renderHUD();
+
+	// Draw the lighting
+	lighting.render();
 
 
 }

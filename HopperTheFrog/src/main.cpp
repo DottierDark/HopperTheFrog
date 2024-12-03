@@ -156,7 +156,7 @@ int main(int argc, char** argv) {
 
 
 
-	gStateMachine.change("play", {}); // Start the game with the menu state
+	gStateMachine.change("menu", {}); // Start the game with the menu state
 
 	// Register display callback
 	glutDisplayFunc(Render);
