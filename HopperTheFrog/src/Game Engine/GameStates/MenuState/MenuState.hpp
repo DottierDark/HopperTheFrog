@@ -1,5 +1,18 @@
 #pragma once
 #include <Game Engine/GameStates/State.hpp>
+#include <Game Engine/GameStates/State.hpp>
+#include <Game Engine/GameStates/MenuState/MenuState.hpp>
+#include <Game Engine/GameStates/PlayState/PlayState.hpp>
+#include <Game Engine/GameStates/GameWinState/GameWinState.hpp>
+#include <Game Engine/GameStates/StateManager.hpp>
+
+
+#include <Objects/Player/Frog.hpp>
+#include <Environment/Levels/Level1/Level1.h>
+#include <Environment/Levels/Level2/Level2.h>
+
+
+extern StateManager gStateMachine;
 
 extern int windowHeight;
 extern int windowWidth;
@@ -15,6 +28,7 @@ public:
 	void handleKeyRelease(unsigned char key, int x, int y) override;
 	void render() override;
 	void exit() override;
+	void renderStrokeText(const char* text, int x, int y, float scale);
 
 private:
 };

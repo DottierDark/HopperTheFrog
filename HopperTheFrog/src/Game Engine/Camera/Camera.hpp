@@ -1,7 +1,11 @@
 #pragma once
 
 #include <Utils/Vector3f.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
 #include <GL/glut.h>
+#endif
 #include <cmath>
 
 enum ViewType { FIRST_PERSON, THIRD_PERSON };
