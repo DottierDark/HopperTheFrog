@@ -124,6 +124,45 @@ bool Frog::hasCollided(Vector3f pos, float radius) {
 	return false;
 }
 
+bool Frog::wallCollision() {
+	const float pushBackAmount = 13.0f; // Fixed amount to push the player back
+
+	// Left wall collision
+	if (pos.x < -groundSize + pushBackAmount) {
+		pos.x = (-groundSize) + pushBackAmount; // Push back to within bounds
+		return true;
+	}
+	// Right wall collision
+	if (pos.x > groundSize - pushBackAmount) {
+		pos.x = groundSize - pushBackAmount;
+		return true;
+	}
+	// Bottom wall collision
+	if (pos.z < -groundSize + pushBackAmount) {
+		pos.z = -groundSize + pushBackAmount;
+		return true;
+	}
+	// Top wall collision
+	if (pos.z > groundSize - pushBackAmount) {
+		pos.z = groundSize - pushBackAmount;
+		return true;
+	}
+
+	// No collision
+	return false;
+}
+
+
+void Frog::update(float deltaTime) {
+	if (moving && !wallCollision()) {
+		// Move player in the direction they are facing
+		pos = pos + direction * speed * deltaTime;
+
+		// Clamp player position to the game area
+
+	}
+}
+
 
 void Frog::drawHeart(float x, float y, float size) {
 	glBegin(GL_POLYGON);
@@ -189,18 +228,6 @@ void Frog::renderHUD() {
 	glDisable(GL_BLEND); // Disable blending
 	glEnable(GL_DEPTH_TEST); // Re-enable depth test
 	glEnable(GL_LIGHTING); // Re-enable lighting
-}
-
-
-
-void Frog::update(float deltaTime) {
-	if (moving) {
-		// Move player in the direction they are facing
-		pos = pos + direction * speed * deltaTime;
-
-		// Clamp player position to the game area
-
-	}
 }
 
 

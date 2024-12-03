@@ -4,6 +4,8 @@
 extern int windowHeight;
 extern int windowWidth;
 
+extern int groundSize;
+
 extern StateManager gStateMachine;
 
 PlayState::PlayState() {
@@ -13,6 +15,8 @@ PlayState::PlayState() {
 	lighting = Lighting();
 	currentLevel = 1;
 	level1Complete = false;
+	level2Complete = false;
+
 
 }
 
@@ -35,6 +39,8 @@ void PlayState::enter(const std::vector<std::string>& enterParams) {
 	// Set the camera view
 	level1 = Level1();
 	level2 = Level2();
+
+
 
 }
 
@@ -99,18 +105,23 @@ void PlayState::update(float deltaTime) {
 		}
 	}
 	else if (currentLevel == 2) {
-		for (auto it = level2.lilyPads.begin(); it != level2.lilyPads.end();) {
-			// Check if the frog has collided with a car
-			if (frog.hasCollided(it->pos, 15)) { // Adjust collision radius as needed
-				// Handle frog-car collision (e.g., reset position, reduce life, etc.)
-				frog.resetPosition();
-				frog.takeDamage();
-				if (frog.getLives() == 0) {
-					// Game over lose
-					gStateMachine.change("gameover", { std::to_string(frog.getScore()) });
+
+		if ((frog.getZ() <= 70 && frog.getZ() >= 50) || (frog.getZ() <= -50 && frog.getZ() >= -70)) {
+			bool isOnLilyPad = false;
+			for (auto& lilyPad : level2.lilyPads) {
+				if (frog.hasCollided(lilyPad.pos, 30)) { // Adjust collision radius for lily pads
+					isOnLilyPad = true;
+					break;
 				}
 			}
-			++it; // Move to the next car
+
+			if (!isOnLilyPad) {
+				frog.takeDamage();
+				frog.resetPosition(); // Reset the frog's position
+				if (frog.getLives() == 0) {
+					gStateMachine.change("gameoverlose", { std::to_string(frog.getScore()) });
+				}
+			}
 		}
 
 		for (auto it = level2.hearts.begin(); it != level2.hearts.end();) {
@@ -207,6 +218,8 @@ void PlayState::render() {
 
 	// Draw the score and lives
 	frog.renderHUD();
+
+
 }
 
 void PlayState::exit() {

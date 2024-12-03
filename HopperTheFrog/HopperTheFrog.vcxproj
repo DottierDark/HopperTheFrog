@@ -162,6 +162,7 @@
     <ClCompile Include="src\Game Engine\GameStates\StateManager.cpp" />
     <ClCompile Include="src\Utils\Vector3f.cpp" />
     <ClCompile Include="src\Environment\Street\Street.cpp" />
+    <ClCompile Include="src\Objects\Wall\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Objects\Platform\LilyPad.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="src\Utils\Textures\GLTexture.h" />
     <ClInclude Include="src\Utils\Vector3f.h" />
     <ClInclude Include="src\Environment\Street\Street.hpp" />
+    <ClInclude Include="src\Objects\Wall\Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\models\Car\Car.3ds" />

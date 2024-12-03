@@ -85,4 +85,6 @@ private:
 
 	void drawScore();
 
+	bool wallCollision();
+
 };

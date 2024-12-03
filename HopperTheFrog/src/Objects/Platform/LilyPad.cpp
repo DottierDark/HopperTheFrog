@@ -5,7 +5,7 @@ LilyPad::LilyPad() {
 	pos = Vector3f(0, 0, 0);
 	model.Load("assets/models/Lily pads/water lily.3ds");
 
-	model.scale = 0.1f;
+	model.scale = 0.2f;
 }
 
 
@@ -13,7 +13,7 @@ LilyPad::LilyPad(float x, float y, float z) {
 	pos = Vector3f(x, y, z);
 	model.Load("assets/models/Lily pads/water lily.3ds");
 
-	model.scale = 0.1f;
+	model.scale = 0.2f;
 }
 
 

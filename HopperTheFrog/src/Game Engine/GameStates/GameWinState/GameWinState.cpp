@@ -71,6 +71,12 @@ void GameWinState::render() {
 	glColor3f(0.0f, 1.0f, 0.0f); // Green color
 	renderStrokeText("Victory is Yours!", windowWidth / 2, windowHeight / 2 - 120, 0.2f);
 
+	// Render the player's score
+	glColor3f(1.0f, 1.0f, 1.0f); // White color for text
+	;
+	std::string scoreString = "Score: " + std::to_string(playerScore);
+	renderStrokeText(scoreString.c_str(), windowWidth / 2, windowHeight / 2 - 200, 0.4f);
+
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();

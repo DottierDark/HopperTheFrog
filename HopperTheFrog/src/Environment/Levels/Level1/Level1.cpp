@@ -13,9 +13,8 @@ Level1::Level1() {
 	obstacleSpawnRate = 2.0f;
 	obstacleSpawnRate2 = 1.5f;
 
-	for (int i = 0; i < 3; i++) {
-		spawnCoin();
-	}
+	// Spawn coins
+	spawnCoins();
 }
 
 void Level1::spawnObstacle() {
@@ -32,11 +31,57 @@ void Level1::spawnObstacle2() {
 	cars.push_back(Car(x, 0.0f, z)); // Example obstacle
 }
 
-void Level1::spawnCoin() {
-	float x = static_cast<float>(rand() % 200 - 100); // Random x
-	float z = (rand() % 2 == 0) ? 60.0f : -60.0f; // Random z
-	coins.push_back(Coin(x, 3, z));
+void Level1::spawnCoins() {
+	int padsPerRiver = totalCoins / 2; // Split equally between rivers
+	float riverWidth = 200.0f; // Adjust based on river size
+
+	// Generate positions for River1
+	std::vector<float> usedPositionsRiver1;
+	for (int i = 0; i < padsPerRiver; ++i) {
+		float randomX;
+		bool validPosition;
+
+		// Find a valid position with sufficient spacing
+		do {
+			randomX = static_cast<float>(rand() % static_cast<int>(riverWidth) - riverWidth / 2);
+			validPosition = true;
+
+			for (float usedX : usedPositionsRiver1) {
+				if (abs(randomX - usedX) < coinSpacing) {
+					validPosition = false;
+					break;
+				}
+			}
+		} while (!validPosition);
+
+		usedPositionsRiver1.push_back(randomX);
+		coins.push_back(Coin(randomX, 5.0f, -60.0f)); // River1
+	}
+
+	// Generate positions for River2
+	std::vector<float> usedPositionsRiver2;
+	for (int i = 0; i < padsPerRiver; ++i) {
+		float randomX;
+		bool validPosition;
+
+		// Find a valid position with sufficient spacing
+		do {
+			randomX = static_cast<float>(rand() % static_cast<int>(riverWidth) - riverWidth / 2);
+			validPosition = true;
+
+			for (float usedX : usedPositionsRiver2) {
+				if (abs(randomX - usedX) < coinSpacing) {
+					validPosition = false;
+					break;
+				}
+			}
+		} while (!validPosition);
+
+		usedPositionsRiver2.push_back(randomX);
+		coins.push_back(Coin(randomX, 5.0f, 60.0f)); // River2
+	}
 }
+
 
 
 

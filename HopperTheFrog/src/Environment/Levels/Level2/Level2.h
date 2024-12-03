@@ -7,6 +7,10 @@
 #include <Objects/Collectibles/Heart/Heart.hpp>
 #include <Objects/Platform/LilyPad.h>
 
+#include <unordered_set>  // For std::unordered_set
+#include <cstdlib>        // For rand()
+#include <ctime>          // For seeding random number generator (optional)
+
 #include <iostream>
 
 #ifdef __APPLE__
@@ -21,18 +25,17 @@ public:
 	void update(float deltaTime);
 	void render();
 
-	// Add Level1 attributes
 	std::vector<River> rivers;
 	std::vector<LilyPad> lilyPads;
 	std::vector<Heart> hearts;
 	House house;
 
 private:
+	int totalLilyPads; // Total number of lily pads to spawn
+	float lilyPadSpacing; // Distance between lily pads
 
-	// Add Level1 methods
-	void spawnObstacle();
-	void spawnObstacle2();
-	void spawnCoin();
-
+	void spawnLilyPads();
+	void spawnHearts();
 };
+
 

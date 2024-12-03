@@ -1,5 +1,6 @@
 #pragma once
 #include <Utils/Textures/GLTexture.h>
+#include <Objects/Wall/Wall.h>
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
@@ -15,5 +16,19 @@ public:
 
 private:
 	GLTexture texture; // Use the provided texture loader
+
+	Wall frontWall;
+	Wall backWall;
+
+
+	Wall leftWallBetweenRoads;
+	Wall leftWallBeforeRoad1;
+	Wall leftWallAfterRoad2;
+
+	Wall rightWallBetweenRoads;
+	Wall rightWallBeforeRoad1;
+	Wall rightWallAfterRoad2;
+
+
 };
 

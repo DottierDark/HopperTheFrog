@@ -14,7 +14,7 @@ void River::update(float deltaTime) {
 void River::render() {
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
-	glScalef(1.5f, 1.0f, 1.0f);
+	glScalef(1.17f, 1.0f, 1.5f);
 	model.Draw();
 	glPopMatrix();
 }
