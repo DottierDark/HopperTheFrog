@@ -15,8 +15,8 @@ void MenuState::handleMouseClick(int button, int state, int x, int y) {
 
 void MenuState::handleKeyPress(unsigned char key, int x, int y) {
     	switch (key) {
-	case 'r': // Restart game
-	case 'R': // Allow uppercase
+	case 's': // Restart game
+	case 'S': // Allow uppercase
 		gStateMachine.change("play", {});
 		break;
 	case 'q': // Quit game
@@ -59,7 +59,7 @@ void MenuState::render() {
 
 	// Render "Restart" and "Quit" options with stroke font
 	glColor3f(1.0f, 1.0f, 1.0f); // White color
-	renderStrokeText("Press R to Restart!", windowWidth / 2, windowHeight / 2 + 40, 0.4f);
+	renderStrokeText("Press S to Start!", windowWidth / 2, windowHeight / 2 + 40, 0.4f);
 	renderStrokeText("Press Q to Quit :)", windowWidth / 2, windowHeight / 2 - 20, 0.4f);
 
 	glColor3f(0.0f, 1.0f, 0.0f); // Green color
