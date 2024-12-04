@@ -11,6 +11,7 @@
 #include <Game Engine/GameStates/State.hpp>
 #include <Game Engine/Camera/Camera.hpp>
 #include <Game Engine/Lighting/Lighting.hpp>
+#include "Utils/SoundManager/SoundManager.hpp"
 
 #ifdef __APPLE__
 #include <GLUT/glut.h> // Include GLUT for macOS
@@ -22,6 +23,8 @@
 
 #define M_PI 3.14159265358979323846
 #endif // !M_PI
+
+extern SoundManager soundManager;
 
 class PlayState : public State {
 public:

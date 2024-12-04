@@ -11,6 +11,9 @@ GameLoseState::GameLoseState() {
 }
 
 void GameLoseState::enter(const std::vector<std::string>& enterParams) {
+
+	soundManager.stopBackgroundMusic(); 
+	soundManager.playSound("GameLose");	
 	// Any initialization required when entering this state
 
 	if (!enterParams.empty()) {

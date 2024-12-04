@@ -139,6 +139,20 @@ void myReshape(int w, int h)
 	glViewport(0, 0, w, h);
 }
 
+void initSounds (){
+	SoundManager soundManager;
+
+	// Path to the assets folder
+    std::string assetsPath = "assets/sounds";
+	soundManager.addSound("Background", assetsPath + "/BackGround.wav");
+	soundManager.addSound("CollectedItem", assetsPath + "/CollectedItem.wav");
+	soundManager.addSound("LoseLife", assetsPath + "/LoseLife.wav");
+	soundManager.addSound("EndOfEnvironment", assetsPath + "/EndOfEnvironment.wav");
+	soundManager.addSound("GameWin", assetsPath + "/GameWin.wav");
+	soundManager.addSound("GameLose", assetsPath + "/GameLose.wav");
+
+}
+
 
 
 // Main function
