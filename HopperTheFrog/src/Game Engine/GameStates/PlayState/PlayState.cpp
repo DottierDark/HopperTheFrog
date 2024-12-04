@@ -154,6 +154,9 @@ void PlayState::update(float deltaTime) {
 
 		if (frog.hasCollided(level2.house.pos, 30)) {
 			// Game over win
+			soundManager.stopBackgroundMusic();
+			soundManager.playSound("EndOfEnvironment");
+			soundManager.playBackgroundMusic("background", true);
 			gStateMachine.change("gameover", { std::to_string(frog.getScore()) });
 		}
 	}
