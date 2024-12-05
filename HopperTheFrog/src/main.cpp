@@ -150,6 +150,7 @@ void initSounds() {
 	soundManager.addSound("EndOfEnvironment", assetsPath + "/EndOfEnvironment.wav");
 	soundManager.addSound("GameWin", assetsPath + "/GameWin.wav");
 	soundManager.addSound("GameLose", assetsPath + "/GameLose.wav");
+	soundManager.addSound("MainMenu", assetsPath + "/MainMenu.wav");
 
 }
 

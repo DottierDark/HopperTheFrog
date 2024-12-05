@@ -5,6 +5,8 @@ MenuState::MenuState() {
 }
 
 void MenuState::enter(const std::vector<std::string>& enterParams) {
+	soundManager.stopBackgroundMusic();
+	soundManager.playBackgroundMusic("MainMenu", true);
 }
 
 void MenuState::update(float deltaTime) {

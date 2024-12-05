@@ -5,6 +5,7 @@
 #include <Game Engine/GameStates/PlayState/PlayState.hpp>
 #include <Game Engine/GameStates/GameWinState/GameWinState.hpp>
 #include <Game Engine/GameStates/StateManager.hpp>
+#include "Utils/SoundManager/SoundManager.hpp"
 
 
 #include <Objects/Player/Frog.hpp>
@@ -16,6 +17,7 @@ extern StateManager gStateMachine;
 
 extern int windowHeight;
 extern int windowWidth;
+extern SoundManager soundManager;
 
 class MenuState : public State {
 
