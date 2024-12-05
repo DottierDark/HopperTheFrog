@@ -37,6 +37,8 @@ StateManager gStateMachine({
 	{"gameoverlose", []() -> State* { return new GameLoseState(); }}
 	});
 
+SoundManager soundManager;
+
 // Display callback for rendering the scene
 void Render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear screen and depth buffer
@@ -139,12 +141,10 @@ void myReshape(int w, int h)
 	glViewport(0, 0, w, h);
 }
 
-void initSounds (){
-	SoundManager soundManager;
-
+void initSounds() {
 	// Path to the assets folder
-    std::string assetsPath = "assets/sounds";
-	soundManager.addSound("Background", assetsPath + "/BackGround.wav");
+	std::string assetsPath = "assets/sounds";
+	soundManager.addSound("background", assetsPath + "/BackGround.wav");
 	soundManager.addSound("CollectedItem", assetsPath + "/CollectedItem.wav");
 	soundManager.addSound("LoseLife", assetsPath + "/LoseLife.wav");
 	soundManager.addSound("EndOfEnvironment", assetsPath + "/EndOfEnvironment.wav");
@@ -167,6 +167,9 @@ int main(int argc, char** argv) {
 
 	// Initialize OpenGL settings
 	myInit();
+
+	// Initialize the sound manager
+	initSounds();
 
 
 

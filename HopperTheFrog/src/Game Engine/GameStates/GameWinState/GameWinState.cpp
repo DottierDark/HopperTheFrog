@@ -4,8 +4,8 @@ GameWinState::GameWinState() {
 }
 
 void GameWinState::enter(const std::vector<std::string>& enterParams) {
-	soundManager.stopBackgroundMusic(); 
-	soundManager.playSound("GameWin");	
+	soundManager.stopBackgroundMusic();
+	soundManager.playBackgroundMusic("GameWin", true);
 	// Any initialization required when entering this state
 	if (!enterParams.empty()) {
 		playerScore = std::stoi(enterParams[0]);

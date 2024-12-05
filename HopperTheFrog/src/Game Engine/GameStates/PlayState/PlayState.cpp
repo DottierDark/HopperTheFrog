@@ -8,6 +8,8 @@ extern int groundSize;
 
 extern StateManager gStateMachine;
 
+extern SoundManager soundManager;
+
 PlayState::PlayState() {
 	ground = Ground();
 	frog = Frog(0, 5, 142);
@@ -22,6 +24,7 @@ PlayState::PlayState() {
 
 void PlayState::enter(const std::vector<std::string>& enterParams) {
 
+	soundManager.stopBackgroundMusic();
 	soundManager.playBackgroundMusic("background", true);
 
 	level1 = Level1();
@@ -61,9 +64,7 @@ void PlayState::update(float deltaTime) {
 
 		if (frog.hasCollided(level1.portal.pos, 40)) {
 			level1Complete = true;
-			soundManager.stopBackgroundMusic();
 			soundManager.playSound("EndOfEnvironment");
-			soundManager.playBackgroundMusic("background", true);
 			currentLevel = 2;
 			frog.resetPosition();
 		}
@@ -79,9 +80,7 @@ void PlayState::update(float deltaTime) {
 				// Check if the frog has collided with a car
 				if (frog.hasCollided(it->pos, 25)) { // Adjust collision radius as needed
 					// Handle frog-car collision (e.g., reset position, reduce life, etc.)
-					soundManager.stopBackgroundMusic();
 					soundManager.playSound("LoseLife");
-					soundManager.playBackgroundMusic("background", true);
 					frog.resetPosition();
 					frog.takeDamage();
 					if (frog.getLives() == 0) {
@@ -99,9 +98,7 @@ void PlayState::update(float deltaTime) {
 			// Check if the coin has been collected
 			if (frog.hasCollided(it->pos, 10)) { // Adjust collision radius as needed
 				// Handle coin collection (e.g., increase score, etc.)
-				soundManager.stopBackgroundMusic();
 				soundManager.playSound("CollectedItem");
-				soundManager.playBackgroundMusic("background", true);
 				it = level1.coins.erase(it); // Remove the coin and update the iterator
 
 				// Increase the player's score
@@ -124,9 +121,7 @@ void PlayState::update(float deltaTime) {
 			}
 
 			if (!isOnLilyPad) {
-				soundManager.stopBackgroundMusic();	
 				soundManager.playSound("LoseLife");
-				soundManager.playBackgroundMusic("background", true);
 				frog.takeDamage();
 				frog.resetPosition(); // Reset the frog's position
 				if (frog.getLives() == 0) {
@@ -139,9 +134,7 @@ void PlayState::update(float deltaTime) {
 			// Check if the coin has been collected
 			if (frog.hasCollided(it->pos, 10)) { // Adjust collision radius as needed
 				// Handle coin collection (e.g., increase score, etc.)
-				soundManager.stopBackgroundMusic();
 				soundManager.playSound("CollectedItem");
-				soundManager.playBackgroundMusic("background", true);
 				it = level2.hearts.erase(it); // Remove the coin and update the iterator
 				// Increase the player's score
 				frog.heal();
@@ -154,9 +147,7 @@ void PlayState::update(float deltaTime) {
 
 		if (frog.hasCollided(level2.house.pos, 30)) {
 			// Game over win
-			soundManager.stopBackgroundMusic();
 			soundManager.playSound("EndOfEnvironment");
-			soundManager.playBackgroundMusic("background", true);
 			gStateMachine.change("gameover", { std::to_string(frog.getScore()) });
 		}
 	}
